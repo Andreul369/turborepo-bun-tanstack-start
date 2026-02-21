@@ -37,6 +37,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "resend": "catalog:",
+    "superjson": "catalog:",
     "tailwindcss": "catalog:",
     "vite-tsconfig-paths": "^6.1.1",
     "zod": "catalog:"
