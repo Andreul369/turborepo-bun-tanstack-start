@@ -2,6 +2,7 @@
   "extends": "@monorepo/tsconfig/library.json",
   "compilerOptions": {
     "allowJs": true,
+    "noEmit": false,
     "emitDeclarationOnly": true,
     "outDir": "./src/paraglide",
     "baseUrl": ".",
