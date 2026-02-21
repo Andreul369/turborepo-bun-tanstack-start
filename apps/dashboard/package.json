@@ -23,6 +23,7 @@
     "@react-pdf/renderer": "catalog:",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-devtools": "^0.9.6",
+    "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "^1.161.3",
     "@tanstack/react-router-devtools": "^1.161.3",
     "@tanstack/react-router-ssr-query": "^1.161.3",
