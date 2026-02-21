@@ -1,0 +1,18 @@
+import { addTodoSchema } from '@api/schemas/todos';
+import { publicProcedure } from '@api/trpc/init';
+import type { TRPCRouterRecord } from '@trpc/server';
+
+const todos = [
+  { id: 1, name: 'Get groceries' },
+  { id: 2, name: 'Buy a new phone' },
+  { id: 3, name: 'Finish the project' },
+];
+
+export const todosRouter = {
+  list: publicProcedure.query(() => todos),
+  add: publicProcedure.input(addTodoSchema).mutation(({ input }) => {
+    const newTodo = { id: todos.length + 1, name: input.name };
+    todos.push(newTodo);
+    return newTodo;
+  }),
+} satisfies TRPCRouterRecord;

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common": {
+    "welcome": "¡Bienvenido!",
+    "hello": "¡Hola {name}!"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "@monorepo/tsconfig/library.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./src/paraglide",
+    "baseUrl": ".",
+    "paths": {
+      "@monorepo/i18n/*": ["./src/*"]
+    }
+  },
+  "include": ["src/paraglide"],
+  "exclude": ["node_modules", "dist"]
+}

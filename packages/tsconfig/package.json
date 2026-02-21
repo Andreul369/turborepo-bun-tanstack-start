@@ -1,0 +1,25 @@
+{
+  "name": "@monorepo/tsconfig",
+  "version": "0.0.1",
+  "description": "Shared TypeScript configurations for the monorepo",
+  "exports": {
+    "./library.json": "./src/library.json",
+    "./tanstack-start.json": "./src/tanstack-start.json",
+    "./react-library.json": "./src/react-library.json"
+  },
+  "files": [
+    "src/*.json"
+  ],
+  "scripts": {
+    "tsc:init": "bunx tsc --init"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  },
+  "keywords": [
+    "typescript",
+    "tsconfig",
+    "monorepo"
+  ]
+}

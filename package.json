@@ -1,0 +1,66 @@
+{
+  "name": "turborepo-bun-tanstack-start",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo clean",
+    "dev": "turbo dev --parallel",
+    "test": "turbo test --parallel",
+    "start:dashboard": "turbo start --filter=@monorepo/dashboard",
+    "start:website": "turbo start --filter=@monorepo/website",
+    "dev:api": "turbo dev --filter=@monorepo/api",
+    "dev:dashboard": "turbo dev --filter=@monorepo/dashboard",
+    "build:dashboard": "turbo build --filter=@monorepo/dashboard",
+    "dev:website": "turbo dev --filter=@monorepo/website ",
+    "dev:desktop": "turbo dev --filter=@monorepo/desktop",
+    "jobs:dashboard": "turbo jobs --filter=@monorepo/jobs",
+    "format": "biome format --write .",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck"
+  },
+  "packageManager": "bun@1.3.9",
+  "catalog": {
+    "@date-fns/tz": "^1.4.1",
+    "@fast-csv/format": "^5.0.5",
+    "@react-pdf/renderer": "^4.3.1",
+    "@supabase/supabase-js": "^2.49.1",
+    "@sentry/bun": "^10.32.1",
+    "@trigger.dev/sdk": "^4.4.1",
+    "@types/node": "^25.3.0",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "camelcase-keys": "^10.0.1",
+    "date-fns": "^4.1.0",
+    "hono": "^4.12.0",
+    "jose": "^6.1.3",
+    "nanoid": "^5.1.6",
+    "pino": "^10.1.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "resend": "^6.5.2",
+    "tailwindcss": "^4.0.6",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.4",
+    "turbo": "^2.8.10",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=24.13.1"
+  },
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@sentry/cli",
+    "core-js"
+  ],
+  "dependencies": {
+    "lucide-react": "^0.575.0"
+  }
+}

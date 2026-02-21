@@ -1,0 +1,42 @@
+{
+  "name": "@monorepo/api",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "TZ=UTC PORT=3003 bun run --hot src/index.ts",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./trpc/routers/_app": "./src/trpc/routers/_app.ts"
+  },
+  "dependencies": {
+    "@date-fns/tz": "catalog:",
+    "@hono/trpc-server": "^0.4.2",
+    "@trpc/server": "^11.10.0",
+    "@hono/zod-openapi": "1.2.2",
+    "@hono/zod-validator": "^0.7.6",
+    "@fast-csv/format": "catalog:",
+    "@monorepo/db": "workspace:*",
+    "@monorepo/logger": "workspace:*",
+    "@sentry/bun": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "@trigger.dev/sdk": "catalog:",
+    "camelcase-keys": "catalog:",
+    "date-fns": "catalog:",
+    "hono": "catalog:",
+    "jose": "catalog:",
+    "nanoid": "catalog:",
+    "pino": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "resend": "catalog:",
+    "superjson": "^2.2.6",
+    "uuid": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
