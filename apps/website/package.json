@@ -4,13 +4,13 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "bun --bun vite build",
-    "dev": "TZ=UTC bun --bun vite dev --port 3000",
+    "build": "vite build",
+    "dev": "TZ=UTC vite dev --port 3000",
+    "start": "vite preview",
     "clean": "git clean -xdf .output .turbo node_modules",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
-    "start": "bun --bun vite preview"
+    "format": "biome format --write ."
   },
   "dependencies": {
     "@monorepo/ui": "workspace:*",
