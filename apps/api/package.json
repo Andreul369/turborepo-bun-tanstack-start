@@ -32,7 +32,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "resend": "catalog:",
-    "superjson": "^2.2.6",
+    "superjson": "catalog:",
     "uuid": "catalog:",
     "zod": "catalog:"
   },

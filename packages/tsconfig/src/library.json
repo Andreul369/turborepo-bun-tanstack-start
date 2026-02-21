@@ -4,7 +4,6 @@
     "module": "nodenext",
     "target": "esnext",
     "lib": ["esnext"],
-    "types": ["node"],
 
     "sourceMap": true,
     "declaration": true,
