@@ -4,9 +4,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "outDir": "dist"
+    }
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "../../packages/ui/src/utils/theme-provider.tsx",
+    "../../packages/ui/src/utils/use-theme.ts"
+  ],
+  "exclude": ["node_modules"]
 }

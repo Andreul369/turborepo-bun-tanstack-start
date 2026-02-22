@@ -1,3 +1,4 @@
+import { getLocale } from '@monorepo/i18n/runtime';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
@@ -5,6 +6,14 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import appCss from '../globals.css?url';
 
 export const Route = createRootRoute({
+  beforeLoad: async () => {
+    // Other redirect strategies are possible; see
+    // https://github.com/TanStack/router/tree/main/examples/react/i18n-paraglide#offline-redirect
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('lang', getLocale());
+    }
+  },
+
   head: () => ({
     meta: [
       {
@@ -31,7 +40,7 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang={getLocale()} suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

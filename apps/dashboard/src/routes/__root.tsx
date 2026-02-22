@@ -1,11 +1,19 @@
+/// <reference types="vite/client" />
 import type { AppRouter } from '@monorepo/api/trpc/routers/_app';
 import { getLocale } from '@monorepo/i18n/runtime';
+import { Toaster } from '@monorepo/ui/sonner';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import type { QueryClient } from '@tanstack/react-query';
-import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Outlet,
+  ScriptOnce,
+  Scripts,
+} from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query';
-import TanStackQueryProvider from '@/providers/root-provider.js';
+import { Providers } from '@/providers';
 import appCss from '../globals.css?url';
 
 interface MyRouterContext {
@@ -36,16 +44,19 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         title: 'TanStack Start Starter',
       },
     ],
-    links: [
-      {
-        rel: 'stylesheet',
-        href: appCss,
-      },
-    ],
+    links: [{ rel: 'stylesheet', href: appCss }],
   }),
 
-  shellComponent: RootDocument,
+  shellComponent: RootComponent,
 });
+
+function RootComponent() {
+  return (
+    <RootDocument>
+      <Outlet />
+    </RootDocument>
+  );
+}
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -54,20 +65,29 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <TanStackQueryProvider>
+        <ScriptOnce>
+          {/* Apply theme early to avoid FOUC */}
+          {`document.documentElement.classList.toggle(
+            'dark',
+            localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            )`}
+        </ScriptOnce>
+        <Providers>
           {children}
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-            ]}
-          />
-        </TanStackQueryProvider>
+
+          <Toaster richColors />
+        </Providers>
+        <TanStackDevtools
+          config={{
+            position: 'bottom-right',
+          }}
+          plugins={[
+            {
+              name: 'Tanstack Router',
+              render: <TanStackRouterDevtoolsPanel />,
+            },
+          ]}
+        />
         <Scripts />
       </body>
     </html>

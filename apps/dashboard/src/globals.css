@@ -1,1 +1,7 @@
 @import "@monorepo/ui/styles/globals.css";
+
+@source "./";
+
+@theme inline {
+  --font-sans: "Inter Variable", sans-serif;
+}

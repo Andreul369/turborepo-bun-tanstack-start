@@ -4,11 +4,7 @@
     "allowJs": true,
     "noEmit": false,
     "emitDeclarationOnly": true,
-    "outDir": "./src/paraglide",
-    "baseUrl": ".",
-    "paths": {
-      "@monorepo/i18n/*": ["./src/*"]
-    }
+    "outDir": "./src/paraglide"
   },
   "include": ["src/paraglide"],
   "exclude": ["node_modules", "dist"]

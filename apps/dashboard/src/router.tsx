@@ -1,5 +1,7 @@
+import { deLocalizeUrl, localizeUrl } from '@monorepo/i18n/runtime';
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
-import { getContext } from '@/providers/root-provider';
+import { getContext } from '@/providers/trpc-query-provider';
+
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
 
@@ -13,6 +15,11 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
+
+    rewrite: {
+      input: ({ url }) => deLocalizeUrl(url),
+      output: ({ url }) => localizeUrl(url),
+    },
   });
 
   return router;

@@ -1,11 +1,11 @@
 import type { AppRouter } from '@monorepo/api/trpc/routers/_app';
-
+import { createClient } from '@monorepo/supabase/server';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCClient, httpBatchLink, loggerLink } from '@trpc/client';
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
 import type { ReactNode } from 'react';
 import superjson from 'superjson';
-import { TRPCProvider } from '@/trpc/react';
+import { TRPCProvider } from '@/trpc/client';
 
 function getUrl() {
   const base = (() => {
@@ -36,7 +36,8 @@ export const trpcClient = createTRPCClient<AppRouter>({
     }),
     loggerLink({
       enabled: (opts) =>
-        process.env.NODE_ENV === 'development' || (opts.direction === 'down' && opts.result instanceof Error),
+        process.env.NODE_ENV === 'development' ||
+        (opts.direction === 'down' && opts.result instanceof Error),
     }),
   ],
 });
@@ -72,7 +73,7 @@ export function getContext() {
   return context;
 }
 
-export default function TanStackQueryProvider({ children }: { children: ReactNode }) {
+export function TanStackQueryProvider({ children }: { children: ReactNode }) {
   const { queryClient } = getContext();
 
   return (
