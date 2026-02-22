@@ -20,19 +20,19 @@ export const trpcClient = createTRPCClient<AppRouter>({
     httpBatchLink({
       url: getUrl(),
       transformer: superjson,
-      async headers() {
-        const supabase = await createClient();
+      // async headers() {
+      //   const supabase = await createClient();
 
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
+      //   const {
+      //     data: { session },
+      //   } = await supabase.auth.getSession();
 
-        const result: Record<string, string> = {
-          Authorization: `Bearer ${session?.access_token}`,
-        };
+      //   const result: Record<string, string> = {
+      //     Authorization: `Bearer ${session?.access_token}`,
+      //   };
 
-        return result;
-      },
+      //   return result;
+      // },
     }),
     loggerLink({
       enabled: (opts) =>
@@ -44,9 +44,9 @@ export const trpcClient = createTRPCClient<AppRouter>({
 
 let context:
   | {
-      queryClient: QueryClient;
-      trpc: ReturnType<typeof createTRPCOptionsProxy<AppRouter>>;
-    }
+    queryClient: QueryClient;
+    trpc: ReturnType<typeof createTRPCOptionsProxy<AppRouter>>;
+  }
   | undefined;
 
 export function getContext() {

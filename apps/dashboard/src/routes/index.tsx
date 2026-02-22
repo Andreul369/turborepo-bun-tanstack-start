@@ -36,28 +36,44 @@ function App() {
         <p>
           Edit <code>src/routes/index.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="App-link"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
       </header>
 
       <Card>
         <CardHeader>
-          <CardTitle>{t('common.welcome')}</CardTitle>
-          <ThemeToggle />
+          <CardTitle>
+            {t('common.welcome')}
+            <ThemeToggle />
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Welcome to the website</p>
+          <Button onClick={() => toast.success('The button was clicked')}>
+            Click me to see Sonner
+          </Button>
+        </CardContent>
+        <CardFooter>
+          <DropdownMenu>
+            <DropdownMenuTrigger render={<Button variant="outline" />}>
+              Open Dropdown Menu
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </DropdownMenuGroup>
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>Subscription</DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </CardFooter>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Hello World</CardTitle>
         </CardHeader>
         <CardContent>
           {locales.map((locale) => (
@@ -65,36 +81,13 @@ function App() {
               key={locale}
               onClick={() => setLocale(locale)}
               data-active-locale={locale === getLocale()}
-              className="data-[active-locale=true]:bg-accent data-[active-locale=true]:text-white"
+              className="capitalize data-[active-locale=true]:bg-accent data-[active-locale=true]:text-white"
             >
               {locale}
             </Button>
           ))}
         </CardContent>
-        <CardFooter>
-          <Button onClick={() => toast.success('The button was clicked')}>
-            Click me to see Sonner
-          </Button>
-        </CardFooter>
       </Card>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger render={<Button variant="outline" />}>
-          Open Dropdown Menu
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuGroup>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuSeparator />
-          </DropdownMenuGroup>
-          <DropdownMenuGroup>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
     </div>
   );
 }

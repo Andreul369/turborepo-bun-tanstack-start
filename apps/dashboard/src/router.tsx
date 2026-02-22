@@ -1,4 +1,4 @@
-import { deLocalizeUrl, localizeUrl } from '@monorepo/i18n/runtime';
+// import { deLocalizeUrl, localizeUrl } from '@monorepo/i18n/runtime';
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
 import { getContext } from '@/providers/trpc-query-provider';
 
@@ -16,10 +16,10 @@ export const getRouter = () => {
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
 
-    rewrite: {
-      input: ({ url }) => deLocalizeUrl(url),
-      output: ({ url }) => localizeUrl(url),
-    },
+    // rewrite: {
+    //   input: ({ url }) => deLocalizeUrl(url),
+    //   output: ({ url }) => localizeUrl(url),
+    // },
   });
 
   return router;

@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 import type { AppRouter } from '@monorepo/api/trpc/routers/_app';
 import { getLocale } from '@monorepo/i18n/runtime';
 import { Toaster } from '@monorepo/ui/sonner';
@@ -7,7 +6,6 @@ import type { QueryClient } from '@tanstack/react-query';
 import {
   createRootRouteWithContext,
   HeadContent,
-  Outlet,
   ScriptOnce,
   Scripts,
 } from '@tanstack/react-router';
@@ -47,16 +45,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     links: [{ rel: 'stylesheet', href: appCss }],
   }),
 
-  shellComponent: RootComponent,
+  shellComponent: RootDocument,
 });
 
-function RootComponent() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  );
-}
+
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -72,11 +64,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
             )`}
         </ScriptOnce>
+
         <Providers>
           {children}
-
           <Toaster richColors />
         </Providers>
+
         <TanStackDevtools
           config={{
             position: 'bottom-right',

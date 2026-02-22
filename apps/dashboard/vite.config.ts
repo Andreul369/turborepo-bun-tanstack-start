@@ -5,15 +5,12 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
 import { nitro } from 'nitro/vite';
 import { defineConfig } from 'vite';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // tsconfigPaths is the plugin that enables path aliases
 const config = defineConfig({
   plugins: [
     devtools(),
-    viteTsConfigPaths({
-      projects: ['./tsconfig.json', '../api/tsconfig.json', '../../packages/ui/tsconfig.json'],
-    }),
     paraglideVitePlugin({
       project: '../../packages/i18n/project.inlang',
       outdir: '../../packages/i18n/src/paraglide',
@@ -33,22 +30,16 @@ const config = defineConfig({
         },
       ],
     }),
-    tanstackStart(),
     nitro({ preset: 'bun' }),
+    // this is the plugin that enables path aliases
+    tsconfigPaths({ projects: ['./tsconfig.json'] }),
+    tailwindcss(),
+    tanstackStart(),
     viteReact({
-      // https://react.dev/learn/react-compiler
       babel: {
-        plugins: [
-          [
-            'babel-plugin-react-compiler',
-            {
-              target: '19',
-            },
-          ],
-        ],
+        plugins: ['babel-plugin-react-compiler'],
       },
     }),
-    tailwindcss(),
   ],
 });
 

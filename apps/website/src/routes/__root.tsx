@@ -1,11 +1,13 @@
 import { getLocale } from '@monorepo/i18n/runtime';
+import { Toaster } from '@monorepo/ui/sonner';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { createRootRoute, HeadContent, Scripts } from '@tanstack/react-router';
+import { createRootRouteWithContext, HeadContent, ScriptOnce, Scripts } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { Providers } from '@/providers';
 
 import appCss from '../globals.css?url';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext()({
   beforeLoad: async () => {
     // Other redirect strategies are possible; see
     // https://github.com/TanStack/router/tree/main/examples/react/i18n-paraglide#offline-redirect
@@ -40,12 +42,27 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={getLocale()} className='flex min-h-full w-full scroll-smooth' suppressHydrationWarning>
+    <html
+      lang={getLocale()}
+      className="flex min-h-full w-full scroll-smooth"
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>
-      <body className='flex min-h-full w-full flex-auto flex-col'>
-        {children}
+      <body className="flex min-h-full w-full flex-auto flex-col">
+        <ScriptOnce>
+          {/* Apply theme early to avoid FOUC */}
+          {`document.documentElement.classList.toggle(
+            'dark',
+            localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            )`}
+        </ScriptOnce>
+        <Providers>
+          {children}
+          <Toaster richColors />
+        </Providers>
+
         <TanStackDevtools
           config={{
             position: 'bottom-right',
