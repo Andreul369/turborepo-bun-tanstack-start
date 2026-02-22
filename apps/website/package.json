@@ -37,7 +37,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "babel-plugin-react-compiler": "catalog:",
     "typescript": "catalog:",
-    "vite": "^7.1.7",
+    "vite": "^8.0.0-beta.15",
     "vitest": "^4.0.18",
     "web-vitals": "^5.1.0"
   }

@@ -18,7 +18,7 @@ const config = defineConfig({
       project: '../../packages/i18n/project.inlang',
       outdir: '../../packages/i18n/src/paraglide',
       outputStructure: 'message-modules',
-      cookieName: 'PARAGLIDE_LOCALE',
+      cookieName: 'paraglide-locale',
       strategy: ['url', 'cookie', 'preferredLanguage', 'baseLocale'],
       urlPatterns: [
         {

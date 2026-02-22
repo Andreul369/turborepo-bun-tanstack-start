@@ -40,11 +40,11 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={getLocale()} suppressHydrationWarning>
+    <html lang={getLocale()} className='flex min-h-full w-full scroll-smooth' suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className='flex min-h-full w-full flex-auto flex-col'>
         {children}
         <TanStackDevtools
           config={{
