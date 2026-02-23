@@ -1,8 +1,19 @@
 // import { useTRPC } from '@/trpc/client';
-import { getLocale, locales, setLocale } from '@monorepo/i18n/runtime';
-import { t } from '@monorepo/i18n/utils';
-import { Button } from '@monorepo/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@monorepo/ui/card';
+
+// import { useQuery } from '@tanstack/react-query';
+import { createFileRoute } from "@tanstack/react-router";
+import { getLocale, locales, setLocale } from "@monorepo/i18n/runtime";
+import { t } from "@monorepo/i18n/utils";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@monorepo/ui/breadcrumb";
+import { Button } from "@monorepo/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@monorepo/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,83 +22,58 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@monorepo/ui/dropdown-menu';
-// import { useQuery } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
-import { toast } from 'sonner';
-import { ThemeToggle } from '@/components/theme-toggle';
+} from "@monorepo/ui/dropdown-menu";
+import { Separator } from "@monorepo/ui/separator";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@monorepo/ui/sidebar";
+import { toast } from "sonner";
+import { AppSidebar } from "@/components/app-sidebar";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
   // loader: async ({ context }) =>
   //   await context.queryClient.prefetchQuery(context.trpc.users.me.queryOptions()),
 });
 
-function App() {
+function App({ children }: { children: React.ReactNode }) {
   // const trpc = useTRPC();
   // const userLoaderData = Route.useLoaderData();
   // const user = useQuery(trpc.users.me.queryOptions());
 
   return (
-    <div className="flex flex-col w-full items-center p-6 gap-4">
-      <header>
-        <img src="/tanstack-circle-logo.png" className="App-logo" alt="TanStack Logo" />
-
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-      </header>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>
-            {t('common.welcome')}
-            <ThemeToggle />
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>Welcome to the website</p>
-          <Button onClick={() => toast.success('The button was clicked')}>
-            Click me to see Sonner
-          </Button>
-        </CardContent>
-        <CardFooter>
-          <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" />}>
-              Open Dropdown Menu
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuSeparator />
-              </DropdownMenuGroup>
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Hello World</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {locales.map((locale) => (
-            <Button
-              key={locale}
-              onClick={() => setLocale(locale)}
-              data-active-locale={locale === getLocale()}
-              className="capitalize data-[active-locale=true]:bg-accent data-[active-locale=true]:text-white"
-            >
-              {locale}
-            </Button>
-          ))}
-        </CardContent>
-      </Card>
-    </div>
+    <SidebarProvider>
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:my-auto data-[orientation=vertical]:h-4"
+            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="#">Build Your Application</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        {/* <div className="flex flex-1 flex-col gap-4 p-4 pt-0"> */}
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="aspect-video rounded-xl bg-muted" />
+            <div className="aspect-video rounded-xl bg-muted" />
+            <div className="aspect-video rounded-xl bg-muted" />
+          </div>
+          <div className="min-h-screen flex-1 rounded-xl bg-muted md:min-h-min" />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }

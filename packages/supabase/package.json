@@ -18,7 +18,7 @@
     "@monorepo/logger": "workspace:*",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.49.1",
-    "@tanstack/react-start": "^1.162.2",
+    "@tanstack/react-start": "^1.162.6",
     "@types/pg": "^8.16.0",
     "camelcase-keys": "catalog:",
     "drizzle-orm": "^0.45.0",
