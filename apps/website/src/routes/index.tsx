@@ -1,75 +1,68 @@
-import { getLocale, locales, setLocale } from '@monorepo/i18n/runtime';
-import { t } from '@monorepo/i18n/utils';
-import { Button } from '@monorepo/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@monorepo/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@monorepo/ui/dropdown-menu';
 import { createFileRoute } from '@tanstack/react-router';
-import { toast } from 'sonner';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { blogPosts } from '@/assets/data/blog-posts';
+import Blog from '@/components/blocks/blog-component/blog-component';
+import CTA from '@/components/blocks/cta-section/cta-section';
+import HeroSection from '@/components/blocks/hero-section/hero-section';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
+// import { ThemeToggle } from '@/components/theme-toggle';
 
 export const Route = createFileRoute('/')({ component: App });
 
+const navigationData = [
+  {
+    title: 'Home',
+    href: '/#home',
+  },
+  {
+    title: 'Categories',
+    href: '/#categories',
+  },
+  {
+    title: 'Team',
+    href: '#',
+  },
+  {
+    title: 'About Us',
+    href: '#',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${process.env.NEXT_PUBLIC_APP_URL}#website`,
+      name: 'Ink - Blog Landing Page',
+      description:
+        'Ink is a free Shadcn UI Blog Landing Page template to publish articles, insights, and categories with a clean, fast, and readable layout.',
+      url: `${process.env.NEXT_PUBLIC_APP_URL}`,
+      inLanguage: 'en-US',
+    },
+  ],
+};
+
 function App() {
   return (
-    <div className="flex flex-col w-full items-center p-6 gap-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>
-            {t('common.welcome')} to the website!
-            <ThemeToggle />
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>Welcome to the website</p>
-          <Button onClick={() => toast.success('The button was clicked')}>
-            Click me to see Sonner
-          </Button>
-        </CardContent>
-        <CardFooter>
-          <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" />}>
-              Open Dropdown Menu
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuGroup>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuSeparator />
-              </DropdownMenuGroup>
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Hello World</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {locales.map((locale) => (
-            <Button
-              key={locale}
-              onClick={() => setLocale(locale)}
-              data-active-locale={locale === getLocale()}
-              className="capitalize data-[active-locale=true]:bg-accent data-[active-locale=true]:text-white"
-            >
-              {locale}
-            </Button>
-          ))}
-        </CardContent>
-      </Card>
-    </div>
+    <>
+      <Header navigationData={navigationData} />
+
+      <main className="flex flex-col">
+        <HeroSection blogData={blogPosts} />
+        <Blog />
+        <CTA />
+        {/* Add JSON-LD to your page */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
+      </main>
+
+      <Footer />
+    </>
   );
 }

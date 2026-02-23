@@ -1,10 +1,14 @@
+import { TanStackDevtools } from '@tanstack/react-devtools';
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  ScriptOnce,
+  Scripts,
+} from '@tanstack/react-router';
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { getLocale } from '@monorepo/i18n/runtime';
 import { Toaster } from '@monorepo/ui/sonner';
-import { TanStackDevtools } from '@tanstack/react-devtools';
-import { createRootRouteWithContext, HeadContent, ScriptOnce, Scripts } from '@tanstack/react-router';
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { Providers } from '@/providers';
-
 import appCss from '../globals.css?url';
 
 export const Route = createRootRouteWithContext()({
@@ -58,9 +62,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
             )`}
         </ScriptOnce>
+
         <Providers>
-          {children}
-          <Toaster richColors />
+          <div className="flex h-full w-full min-w-0 flex-col">
+            {children}
+            <Toaster richColors />
+          </div>
         </Providers>
 
         <TanStackDevtools
