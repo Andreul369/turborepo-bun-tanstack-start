@@ -1,11 +1,11 @@
-import type { ExtractTablesWithRelations } from 'drizzle-orm';
-import type { NodePgQueryResultHKT } from 'drizzle-orm/node-postgres';
-import { drizzle } from 'drizzle-orm/node-postgres';
-import type { PgTransaction } from 'drizzle-orm/pg-core';
-import { Pool } from 'pg';
-import * as schema from './schema';
+import type { ExtractTablesWithRelations } from "drizzle-orm";
+import type { NodePgQueryResultHKT } from "drizzle-orm/node-postgres";
+import { drizzle } from "drizzle-orm/node-postgres";
+import type { PgTransaction } from "drizzle-orm/pg-core";
+import { Pool } from "pg";
+import * as schema from "./schema";
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === "development";
 
 const connectionConfig = {
   max: isDevelopment ? 8 : 12,
@@ -24,7 +24,7 @@ const primaryPool = new Pool({
 
 export const db = drizzle(primaryPool, {
   schema,
-  casing: 'snake_case',
+  casing: "snake_case",
 });
 
 export type Database = typeof db;

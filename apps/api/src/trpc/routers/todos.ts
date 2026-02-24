@@ -1,11 +1,11 @@
-import { addTodoSchema } from '@api/schemas/todos';
-import { publicProcedure } from '@api/trpc/init';
-import type { TRPCRouterRecord } from '@trpc/server';
+import { addTodoSchema } from "@api/schemas/todos";
+import { publicProcedure } from "@api/trpc/init";
+import type { TRPCRouterRecord } from "@trpc/server";
 
 const todos = [
-  { id: 1, name: 'Get groceries' },
-  { id: 2, name: 'Buy a new phone' },
-  { id: 3, name: 'Finish the project' },
+  { id: 1, name: "Get groceries" },
+  { id: 2, name: "Buy a new phone" },
+  { id: 3, name: "Finish the project" },
 ];
 
 export const todosRouter = {

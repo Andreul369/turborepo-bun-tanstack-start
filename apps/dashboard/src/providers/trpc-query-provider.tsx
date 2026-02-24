@@ -1,22 +1,22 @@
-import type { AppRouter } from '@monorepo/api/trpc/routers/_app';
-import { createClient } from '@monorepo/supabase/server';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createServerFn } from '@tanstack/react-start';
-import { createTRPCClient, httpBatchLink, loggerLink } from '@trpc/client';
-import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
-import type { ReactNode } from 'react';
-import superjson from 'superjson';
-import { TRPCProvider } from '@/trpc/client';
+import type { AppRouter } from "@monorepo/api/trpc/routers/_app";
+import { createClient } from "@monorepo/supabase/server";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createServerFn } from "@tanstack/react-start";
+import { createTRPCClient, httpBatchLink, loggerLink } from "@trpc/client";
+import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
+import type { ReactNode } from "react";
+import superjson from "superjson";
+import { TRPCProvider } from "@/trpc/client";
 
 function getUrl() {
   const base = (() => {
-    if (typeof window !== 'undefined') return '';
+    if (typeof window !== "undefined") return "";
     return `http://localhost:${process.env.PORT ?? 3000}`;
   })();
   return `${base}/api/trpc`;
 }
 
-const getHeaders = createServerFn({ method: 'GET' }).handler(async () => {
+const getHeaders = createServerFn({ method: "GET" }).handler(async () => {
   const supabase = await createClient();
 
   const {
@@ -30,7 +30,6 @@ const getHeaders = createServerFn({ method: 'GET' }).handler(async () => {
   return result;
 });
 
-
 export const trpcClient = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
@@ -40,17 +39,17 @@ export const trpcClient = createTRPCClient<AppRouter>({
     }),
     loggerLink({
       enabled: (opts) =>
-        process.env.NODE_ENV === 'development' ||
-        (opts.direction === 'down' && opts.result instanceof Error),
+        process.env.NODE_ENV === "development" ||
+        (opts.direction === "down" && opts.result instanceof Error),
     }),
   ],
 });
 
 let context:
   | {
-    queryClient: QueryClient;
-    trpc: ReturnType<typeof createTRPCOptionsProxy<AppRouter>>;
-  }
+      queryClient: QueryClient;
+      trpc: ReturnType<typeof createTRPCOptionsProxy<AppRouter>>;
+    }
   | undefined;
 
 export function getContext() {

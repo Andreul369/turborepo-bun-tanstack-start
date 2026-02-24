@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Link } from '@tanstack/react-router';
-import { Button, buttonVariants } from '@monorepo/ui/button';
-import { cn } from '@monorepo/ui/cn';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@monorepo/ui/tooltip';
-import { MailIcon, MenuIcon } from 'lucide-react';
-import InkLogo from '@/assets/svg/logo';
-import MenuDropdown from '@/components/blocks/menu-dropdown';
-import type { NavigationSection } from '@/components/blocks/menu-navigation';
-import MenuNavigation from '@/components/blocks/menu-navigation';
-import { ThemeToggle } from './theme-toggle';
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { Button, buttonVariants } from "@monorepo/ui/button";
+import { cn } from "@monorepo/ui/cn";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@monorepo/ui/tooltip";
+import { MailIcon, MenuIcon } from "lucide-react";
+import InkLogo from "@/assets/svg/logo";
+import MenuDropdown from "@/components/blocks/menu-dropdown";
+import type { NavigationSection } from "@/components/blocks/menu-navigation";
+import MenuNavigation from "@/components/blocks/menu-navigation";
+import { ThemeToggle } from "./theme-toggle";
 
 type HeaderProps = {
   navigationData: NavigationSection[];
@@ -23,25 +23,25 @@ const Header = ({ navigationData, className }: HeaderProps) => {
       setIsScrolled(window.scrollY > 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('section[id]');
+      const sections = document.querySelectorAll("section[id]");
       const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       // If no sections exist on the page, clear active section
       if (sections.length === 0) {
-        if (activeSection !== '') {
-          setActiveSection('');
+        if (activeSection !== "") {
+          setActiveSection("");
         }
 
         return;
@@ -64,8 +64,8 @@ const Header = ({ navigationData, className }: HeaderProps) => {
       }
 
       // If no section matched, clear active section
-      if (!foundSection && activeSection !== '') {
-        setActiveSection('');
+      if (!foundSection && activeSection !== "") {
+        setActiveSection("");
       }
     };
 
@@ -73,19 +73,19 @@ const Header = ({ navigationData, className }: HeaderProps) => {
     handleScroll();
 
     // Listen for scroll events
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [activeSection]);
 
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 h-16 w-full bg-background transition-all duration-300',
+        "sticky top-0 z-50 h-16 w-full bg-background transition-all duration-300",
         {
-          'shadow-sm': isScrolled,
+          "shadow-sm": isScrolled,
         },
         className,
       )}
@@ -94,7 +94,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
           <InkLogo />
-          <span className='font-semibold text-[20px] text-primary'>INK</span>
+          <span className="font-semibold text-[20px] text-primary">INK</span>
         </Link>
 
         {/* Navigation */}
@@ -106,9 +106,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
 
         {/* Actions */}
         <div className="flex gap-3">
-          {/* Add theme toggle here */}
           <ThemeToggle />
-
 
           {/* Navigation for small screens */}
           <div className="flex gap-3">
@@ -130,7 +128,6 @@ const Header = ({ navigationData, className }: HeaderProps) => {
               align="end"
               navigationData={navigationData}
               activeSection={activeSection}
-
             />
           </div>
         </div>

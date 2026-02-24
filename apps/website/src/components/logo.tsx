@@ -1,10 +1,10 @@
 // Util Imports
-import { cn } from '@monorepo/ui/cn';
-import LogoSvg from '@/assets/svg/logo';
+import { cn } from "@monorepo/ui/cn";
+import LogoSvg from "@/assets/svg/logo";
 
 const Logo = ({ className }: { className?: string }) => {
   return (
-    <div className={cn('flex items-center gap-2.5', className)}>
+    <div className={cn("flex items-center gap-2.5", className)}>
       <LogoSvg />
       <span className="text-primary text-[20px] font-semibold">INK</span>
     </div>

@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import type { ReactNode } from 'react';
-import { Link } from '@tanstack/react-router';
-import { Button } from '@monorepo/ui/button';
-import { cn } from '@monorepo/ui/cn';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@monorepo/ui/collapsible';
+import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@monorepo/ui/button";
+import { cn } from "@monorepo/ui/cn";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@monorepo/ui/collapsible";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@monorepo/ui/dropdown-menu';
-import { ChevronRightIcon, CircleSmallIcon, MenuIcon } from 'lucide-react';
+} from "@monorepo/ui/dropdown-menu";
+import { ChevronRightIcon, CircleSmallIcon, MenuIcon } from "lucide-react";
 
 export type NavigationItem = {
   title: string;
@@ -23,23 +23,23 @@ export type NavigationSection = {
   title: string;
   icon?: ReactNode;
 } & (
-    | {
+  | {
       items: NavigationItem[];
       href?: never;
     }
-    | {
+  | {
       items?: never;
       href: string;
     }
-  );
+);
 
 type Props = {
   navigationData: NavigationSection[];
   activeSection?: string;
-  align?: 'center' | 'end' | 'start';
+  align?: "center" | "end" | "start";
 };
 
-const MenuDropdown = ({ navigationData, activeSection, align = 'start' }: Props) => {
+const MenuDropdown = ({ navigationData, activeSection, align = "start" }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" size="icon" className="lg:hidden" />}>
@@ -53,7 +53,7 @@ const MenuDropdown = ({ navigationData, activeSection, align = 'start' }: Props)
         {navigationData.map((navItem) => {
           if (navItem.href) {
             // Extract section ID from href (e.g., "/#categories" -> "categories", "/#" -> "home")
-            const sectionFromHref = navItem.href === '/#' ? 'home' : navItem.href.replace('/#', '');
+            const sectionFromHref = navItem.href === "/#" ? "home" : navItem.href.replace("/#", "");
             const isActive = sectionFromHref === activeSection;
 
             return (
@@ -62,7 +62,7 @@ const MenuDropdown = ({ navigationData, activeSection, align = 'start' }: Props)
                 render={
                   <Link
                     to={navItem.href}
-                    className={cn(isActive && 'bg-accent font-medium text-accent-foreground')}
+                    className={cn(isActive && "bg-accent font-medium text-accent-foreground")}
                   >
                     {navItem.icon}
                     {navItem.title}

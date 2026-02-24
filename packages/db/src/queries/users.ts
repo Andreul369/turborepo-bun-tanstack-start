@@ -1,6 +1,6 @@
-import { eq } from 'drizzle-orm';
-import type { Database } from '../client';
-import { users } from '../schema';
+import { eq } from "drizzle-orm";
+import type { Database } from "../client";
+import { users } from "../schema";
 
 export const getUserById = async (db: Database, id: string) => {
   const [result] = await db

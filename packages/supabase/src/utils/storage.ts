@@ -8,10 +8,7 @@ type UploadParams = {
   bucket: string;
 };
 
-export async function upload(
-  client: SupabaseClient,
-  { file, path, bucket }: UploadParams,
-) {
+export async function upload(client: SupabaseClient, { file, path, bucket }: UploadParams) {
   const storage = client.storage.from(bucket);
 
   const result = await storage.upload(path.join("/"), file, {
@@ -31,13 +28,8 @@ type RemoveParams = {
   bucket: string;
 };
 
-export async function remove(
-  client: SupabaseClient,
-  { bucket, path }: RemoveParams,
-) {
-  return client.storage
-    .from(bucket)
-    .remove([decodeURIComponent(path.join("/"))]);
+export async function remove(client: SupabaseClient, { bucket, path }: RemoveParams) {
+  return client.storage.from(bucket).remove([decodeURIComponent(path.join("/"))]);
 }
 
 type DownloadParams = {
@@ -45,10 +37,7 @@ type DownloadParams = {
   bucket: string;
 };
 
-export async function download(
-  client: SupabaseClient,
-  { bucket, path }: DownloadParams,
-) {
+export async function download(client: SupabaseClient, { bucket, path }: DownloadParams) {
   return client.storage.from(bucket).download(path);
 }
 

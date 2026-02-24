@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { isValidEmail, parseEmailList } from '@monorepo/utils';
-import { X } from 'lucide-react';
-import { cn } from '../utils/cn';
-import { Badge } from './badge';
+import * as React from "react";
+import { isValidEmail, parseEmailList } from "@monorepo/utils";
+import { X } from "lucide-react";
+import { cn } from "../utils/cn";
+import { Badge } from "./badge";
 
 export interface EmailTagInputProps {
   value?: string | null;
@@ -17,18 +17,18 @@ export interface EmailTagInputProps {
 export function EmailTagInput({
   value,
   onChange,
-  placeholder = 'Add email...',
+  placeholder = "Add email...",
   disabled,
   className,
 }: EmailTagInputProps) {
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   // Parse comma-separated emails from value
   const emails = React.useMemo(() => parseEmailList(value), [value]);
 
   const updateEmails = (newEmails: string[]) => {
-    onChange?.(newEmails.length > 0 ? newEmails.join(', ') : null);
+    onChange?.(newEmails.length > 0 ? newEmails.join(", ") : null);
   };
 
   const addEmail = (email: string) => {
@@ -42,7 +42,7 @@ export function EmailTagInput({
     if (emails.some((e) => e.toLowerCase() === trimmed)) return;
 
     updateEmails([...emails, trimmed]);
-    setInputValue('');
+    setInputValue("");
   };
 
   const removeEmail = (emailToRemove: string) => {
@@ -50,10 +50,10 @@ export function EmailTagInput({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' || e.key === ',') {
+    if (e.key === "Enter" || e.key === ",") {
       e.preventDefault();
       addEmail(inputValue);
-    } else if (e.key === 'Backspace' && !inputValue && emails.length > 0) {
+    } else if (e.key === "Backspace" && !inputValue && emails.length > 0) {
       removeEmail(emails[emails.length - 1]!);
     }
   };
@@ -66,7 +66,7 @@ export function EmailTagInput({
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const pastedText = e.clipboardData.getData('text');
+    const pastedText = e.clipboardData.getData("text");
     const pastedEmails = pastedText
       .split(/[,;\s]+/)
       .map((e) => e.trim().toLowerCase())
@@ -91,8 +91,8 @@ export function EmailTagInput({
   return (
     <div
       className={cn(
-        'flex min-h-9 w-full flex-wrap items-center gap-1.5 border bg-transparent px-3 py-1 text-sm transition-colors',
-        disabled && 'cursor-not-allowed opacity-50',
+        "flex min-h-9 w-full flex-wrap items-center gap-1.5 border bg-transparent px-3 py-1 text-sm transition-colors",
+        disabled && "cursor-not-allowed opacity-50",
         className,
       )}
       onClick={() => inputRef.current?.focus()}
@@ -123,7 +123,7 @@ export function EmailTagInput({
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
         onPaste={handlePaste}
-        placeholder={emails.length === 0 ? placeholder : ''}
+        placeholder={emails.length === 0 ? placeholder : ""}
         disabled={disabled}
         className="min-w-[120px] flex-1 bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
         autoComplete="off"

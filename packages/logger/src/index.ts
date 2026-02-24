@@ -1,15 +1,15 @@
-import pino from 'pino';
+import pino from "pino";
 
 /**
  * Check if we're in pretty mode
  */
-const isPretty = process.env.LOG_PRETTY === 'true';
+const isPretty = process.env.LOG_PRETTY === "true";
 
 /**
  * Create the base pino logger instance
  */
 const baseLogger = pino({
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || "info",
   serializers: {
     req: pino.stdSerializers.req,
     res: pino.stdSerializers.res,
@@ -18,12 +18,12 @@ const baseLogger = pino({
   // Use pretty printing in development, structured JSON in production
   ...(isPretty && {
     transport: {
-      target: 'pino-pretty',
+      target: "pino-pretty",
       options: {
         colorize: true,
-        translateTime: 'HH:MM:ss',
-        ignore: 'pid,hostname',
-        messageFormat: '{msg}',
+        translateTime: "HH:MM:ss",
+        ignore: "pid,hostname",
+        messageFormat: "{msg}",
         hideObject: false,
         singleLine: false,
         useLevelLabels: true,
@@ -39,9 +39,9 @@ const baseLogger = pino({
 function createLoggerAdapter(pinoLogger: pino.Logger, prefixContext?: string) {
   // Format context with brackets if not already formatted
   const formatContext = (ctx?: string): string => {
-    if (!ctx) return '';
+    if (!ctx) return "";
     // If already has brackets, use as-is, otherwise wrap in brackets
-    if (ctx.startsWith('[') && ctx.endsWith(']')) {
+    if (ctx.startsWith("[") && ctx.endsWith("]")) {
       return ctx;
     }
     return `[${ctx}]`;

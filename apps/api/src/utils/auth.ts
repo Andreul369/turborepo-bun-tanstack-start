@@ -1,4 +1,4 @@
-import { type JWTPayload, jwtVerify } from 'jose';
+import { type JWTPayload, jwtVerify } from "jose";
 
 export type Session = {
   user: {
@@ -20,7 +20,10 @@ export async function verifyAccessToken(accessToken?: string): Promise<Session |
   if (!accessToken) return null;
 
   try {
-    const { payload } = await jwtVerify(accessToken, new TextEncoder().encode(process.env.SUPABASE_JWT_SECRET));
+    const { payload } = await jwtVerify(
+      accessToken,
+      new TextEncoder().encode(process.env.SUPABASE_JWT_SECRET),
+    );
 
     const supabasePayload = payload as SupabaseJWTPayload;
 

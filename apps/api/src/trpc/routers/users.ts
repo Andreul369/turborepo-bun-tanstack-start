@@ -1,4 +1,4 @@
-import { createTRPCRouter, protectedProcedure } from '@api/trpc/init';
+import { createTRPCRouter, protectedProcedure } from "@api/trpc/init";
 
 export const usersRouter = createTRPCRouter({
   me: protectedProcedure.query(async ({ ctx }) => {

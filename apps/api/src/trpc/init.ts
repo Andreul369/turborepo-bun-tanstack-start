@@ -1,11 +1,11 @@
-import { createClient } from '@api/services/supabase';
-import { type Session, verifyAccessToken } from '@api/utils/auth';
-import type { Database } from '@monorepo/db/client';
-import { db } from '@monorepo/db/client';
-import type { SupabaseClient } from '@supabase/supabase-js';
-import { initTRPC, TRPCError } from '@trpc/server';
-import type { Context } from 'hono';
-import superjson from 'superjson';
+import { createClient } from "@api/services/supabase";
+import { type Session, verifyAccessToken } from "@api/utils/auth";
+import type { Database } from "@monorepo/db/client";
+import { db } from "@monorepo/db/client";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { initTRPC, TRPCError } from "@trpc/server";
+import type { Context } from "hono";
+import superjson from "superjson";
 
 interface TRPCContext {
   session: Session | null;
@@ -14,7 +14,7 @@ interface TRPCContext {
 }
 
 export const createTRPCContext = async (_: unknown, ctx: Context): Promise<TRPCContext> => {
-  const accessToken = ctx.req.header('Authorization')?.split(' ')[1];
+  const accessToken = ctx.req.header("Authorization")?.split(" ")[1];
   const session = await verifyAccessToken(accessToken);
 
   const supabase = await createClient(accessToken);
@@ -37,7 +37,7 @@ export const protectedProcedure = t.procedure.use(async (opts) => {
   const { session } = opts.ctx;
 
   if (!session) {
-    throw new TRPCError({ code: 'UNAUTHORIZED' });
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   return opts.next({

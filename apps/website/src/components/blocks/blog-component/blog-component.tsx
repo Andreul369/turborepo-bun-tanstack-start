@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Badge } from '@monorepo/ui/badge';
+import { useState } from "react";
+import { Badge } from "@monorepo/ui/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,15 +9,15 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@monorepo/ui/breadcrumb';
-import { Button } from '@monorepo/ui/button';
-import { Card, CardContent } from '@monorepo/ui/card';
-import { Input } from '@monorepo/ui/input';
-import { ScrollArea, ScrollBar } from '@monorepo/ui/scroll-area';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@monorepo/ui/tabs';
-import { ArrowRightIcon, CalendarDaysIcon, SearchIcon } from 'lucide-react';
+} from "@monorepo/ui/breadcrumb";
+import { Button } from "@monorepo/ui/button";
+import { Card, CardContent } from "@monorepo/ui/card";
+import { Input } from "@monorepo/ui/input";
+import { ScrollArea, ScrollBar } from "@monorepo/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@monorepo/ui/tabs";
+import { ArrowRightIcon, CalendarDaysIcon, SearchIcon } from "lucide-react";
 // Import the blog posts data from centralized location
-import { blogPosts } from '@/assets/data/blog-posts';
+import { blogPosts } from "@/assets/data/blog-posts";
 
 export type BlogPost = {
   id: number;
@@ -59,7 +59,7 @@ const BlogGrid = ({
         <Card
           key={post.id}
           className="group h-full cursor-pointer overflow-hidden shadow-none transition-all duration-300"
-        // onClick={() => handleCardClick(post)}
+          // onClick={() => handleCardClick(post)}
         >
           <CardContent className="space-y-3.5">
             <div className="mb-6 overflow-hidden rounded-lg sm:mb-12">
@@ -70,12 +70,12 @@ const BlogGrid = ({
               />
             </div>
             <div className="flex items-center justify-between gap-1.5">
-              <div className='flex items-center gap-1.5 text-muted-foreground'>
+              <div className="flex items-center gap-1.5 text-muted-foreground">
                 <CalendarDaysIcon className="size-5" />
                 <span>{post.date}</span>
               </div>
               <Badge
-                className='rounded-full border-0 bg-primary/10 text-primary text-sm'
+                className="rounded-full border-0 bg-primary/10 text-primary text-sm"
                 onClick={(e) => {
                   e.stopPropagation();
                   onCategoryClick(post.category);
@@ -85,13 +85,13 @@ const BlogGrid = ({
                 {post.category}
               </Badge>
             </div>
-            <h3 className='line-clamp-2 font-medium text-lg md:text-xl'>{post.title}</h3>
-            <p className='line-clamp-2 text-muted-foreground'>{post.description}</p>
+            <h3 className="line-clamp-2 font-medium text-lg md:text-xl">{post.title}</h3>
+            <p className="line-clamp-2 text-muted-foreground">{post.description}</p>
             <div className="flex items-center justify-between">
-              <span className='font-medium text-sm'>{post.author}</span>
+              <span className="font-medium text-sm">{post.author}</span>
               <Button
                 size="icon"
-                className='border bg-background text-foreground hover:border-transparent hover:bg-primary! hover:text-primary-foreground group-hover:border-transparent group-hover:bg-primary! group-hover:text-primary-foreground'
+                className="border bg-background text-foreground hover:border-transparent hover:bg-primary! hover:text-primary-foreground group-hover:border-transparent group-hover:bg-primary! group-hover:text-primary-foreground"
               >
                 <ArrowRightIcon className="size-4 -rotate-45" />
                 <span className="sr-only">Read more: {post.title}</span>
@@ -105,7 +105,7 @@ const BlogGrid = ({
 };
 
 const Blog = () => {
-  const [selectedTab, setSelectedTab] = useState('All');
+  const [selectedTab, setSelectedTab] = useState("All");
   // const router = useRouter();
 
   // Get only the blog posts that have corresponding pages
@@ -119,7 +119,7 @@ const Blog = () => {
 
   // Dynamically generate categories from the available data
   const uniqueCategories = [...new Set(nonFeaturedPosts.map((post) => post.category))];
-  const categories = ['All', ...uniqueCategories.sort()];
+  const categories = ["All", ...uniqueCategories.sort()];
 
   const handleTabChange = (tab: string) => {
     setSelectedTab(tab);
@@ -134,8 +134,8 @@ const Blog = () => {
       <div className="mx-auto max-w-7xl space-y-8 px-4 sm:px-6 lg:space-y-16 lg:px-8">
         {/* Header */}
         <div className="space-y-4">
-          {selectedTab === 'All' && <p className="text-sm">Blogs</p>}
-          {selectedTab !== 'All' && (
+          {selectedTab === "All" && <p className="text-sm">Blogs</p>}
+          {selectedTab !== "All" && (
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
@@ -149,11 +149,11 @@ const Blog = () => {
             </Breadcrumb>
           )}
 
-          <h2 className='font-semibold text-2xl md:text-3xl lg:text-4xl'>
+          <h2 className="font-semibold text-2xl md:text-3xl lg:text-4xl">
             Build Better Products with Insights & Inspiration.
           </h2>
 
-          <p className='text-lg text-muted-foreground md:text-xl'>
+          <p className="text-lg text-muted-foreground md:text-xl">
             Practical insights and real stories to guide your product from vision to reality.
           </p>
         </div>
@@ -166,14 +166,14 @@ const Blog = () => {
           className="gap-8 lg:gap-16"
         >
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <ScrollArea className='h-fit w-full rounded-lg bg-muted sm:w-auto'>
+            <ScrollArea className="h-fit w-full rounded-lg bg-muted sm:w-auto">
               <TabsList className="h-auto gap-1">
                 {categories.map((category) => (
                   <TabsTrigger
                     key={category}
                     value={category}
                     id={`category-${category}`}
-                    className='cursor-pointer rounded-lg px-4 text-base hover:bg-primary/10'
+                    className="cursor-pointer rounded-lg px-4 text-base hover:bg-primary/10"
                   >
                     {category}
                   </TabsTrigger>
@@ -183,7 +183,7 @@ const Blog = () => {
             </ScrollArea>
 
             <div className="relative max-md:w-full">
-              <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-3 text-muted-foreground peer-disabled:opacity-50'>
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center justify-center pl-3 text-muted-foreground peer-disabled:opacity-50">
                 <SearchIcon className="size-4" />
                 <span className="sr-only">Search</span>
               </div>

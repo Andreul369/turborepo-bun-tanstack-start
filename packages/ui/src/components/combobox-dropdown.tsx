@@ -5,13 +5,7 @@ import { CommandList } from "cmdk";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "../utils/cn";
 import { Button } from "./button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "./command";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./command";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 export type ComboboxItem = {
@@ -28,10 +22,7 @@ type Props<T> = {
   selectedItem?: T;
   renderSelectedItem?: (selectedItem: T) => React.ReactNode;
   renderOnCreate?: (value: string) => React.ReactNode;
-  renderListItem?: (listItem: {
-    isChecked: boolean;
-    item: T;
-  }) => React.ReactNode;
+  renderListItem?: (listItem: { isChecked: boolean; item: T }) => React.ReactNode;
   emptyResults?: React.ReactNode;
   popoverProps?: React.ComponentProps<typeof PopoverContent>;
   disabled?: boolean;
@@ -59,9 +50,7 @@ export function ComboboxDropdown<T extends ComboboxItem>({
   modal = true,
 }: Props<T>) {
   const [open, setOpen] = React.useState(false);
-  const [internalSelectedItem, setInternalSelectedItem] = React.useState<
-    T | undefined
-  >();
+  const [internalSelectedItem, setInternalSelectedItem] = React.useState<T | undefined>();
   const [inputValue, setInputValue] = React.useState("");
 
   const selectedItem = incomingSelectedItem ?? internalSelectedItem;
@@ -109,10 +98,7 @@ export function ComboboxDropdown<T extends ComboboxItem>({
                 ) : (
                   <>
                     <Check
-                      className={cn(
-                        "mr-2 h-4 w-4",
-                        isChecked ? "opacity-100" : "opacity-0",
-                      )}
+                      className={cn("mr-2 h-4 w-4", isChecked ? "opacity-100" : "opacity-0")}
                     />
                     {item.label}
                   </>
@@ -160,9 +146,7 @@ export function ComboboxDropdown<T extends ComboboxItem>({
           <span className="truncate text-ellipsis pr-3">
             {selectedItem ? (
               <span className="block items-center overflow-hidden text-ellipsis whitespace-nowrap">
-                {renderSelectedItem
-                  ? renderSelectedItem(selectedItem)
-                  : selectedItem.label}
+                {renderSelectedItem ? renderSelectedItem(selectedItem) : selectedItem.label}
               </span>
             ) : (
               (placeholder ?? "Select item...")

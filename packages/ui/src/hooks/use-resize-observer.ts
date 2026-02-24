@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useState } from 'react';
+import { type RefObject, useEffect, useState } from "react";
 
 export function useResizeObserver(elementRef: RefObject<Element>): ResizeObserverEntry | undefined {
   const [entry, setEntry] = useState<ResizeObserverEntry>();

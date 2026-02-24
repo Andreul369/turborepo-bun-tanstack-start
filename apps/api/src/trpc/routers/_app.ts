@@ -1,7 +1,7 @@
-import { createTRPCRouter } from '@api/trpc/init';
-import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
-import { todosRouter } from './todos';
-import { usersRouter } from './users';
+import { createTRPCRouter } from "@api/trpc/init";
+import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import { todosRouter } from "./todos";
+import { usersRouter } from "./users";
 
 export const appRouter = createTRPCRouter({
   todos: todosRouter,

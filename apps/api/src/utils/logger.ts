@@ -1,5 +1,5 @@
-import { logger } from '@monorepo/logger';
-import type { Context, MiddlewareHandler } from 'hono';
+import { logger } from "@monorepo/logger";
+import type { Context, MiddlewareHandler } from "hono";
 
 export const httpLogger = (): MiddlewareHandler => {
   return async (context: Context, next) => {

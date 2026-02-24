@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { cn } from '@monorepo/ui/cn';
+import type { ReactNode } from "react";
+import { cn } from "@monorepo/ui/cn";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,7 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@monorepo/ui/navigation-menu';
+} from "@monorepo/ui/navigation-menu";
 
 export type NavigationItem = {
   title: string;
@@ -19,15 +19,15 @@ export type NavigationSection = {
   title: string;
   icon?: ReactNode;
 } & (
-    | {
+  | {
       items: NavigationItem[];
       href?: never;
     }
-    | {
+  | {
       items?: never;
       href: string;
     }
-  );
+);
 
 type MenuNavigationProps = {
   navigationData: NavigationSection[];
@@ -43,7 +43,7 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
           if (navItem.href) {
             // Root link item
             // Extract section ID from href (e.g., "/#categories" -> "categories", "/#" -> "home")
-            const sectionFromHref = navItem.href === '/#' ? 'home' : navItem.href.replace('/#', '');
+            const sectionFromHref = navItem.href === "/#" ? "home" : navItem.href.replace("/#", "");
             const isActive = sectionFromHref === activeSection;
 
             return (
@@ -52,8 +52,8 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
                   href={navItem.href}
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'bg-transparent px-3 py-1.5 text-base! hover:text-primary dark:hover:bg-accent/50',
-                    isActive ? 'bg-accent/50 font-medium text-primary' : 'text-muted-foreground',
+                    "bg-transparent px-3 py-1.5 text-base! hover:text-primary dark:hover:bg-accent/50",
+                    isActive ? "bg-accent/50 font-medium text-primary" : "text-muted-foreground",
                   )}
                 >
                   {navItem.title}
@@ -65,7 +65,7 @@ const MenuNavigation = ({ navigationData, activeSection, className }: MenuNaviga
           // Section with dropdown
           return (
             <NavigationMenuItem key={navItem.title}>
-              <NavigationMenuTrigger className='bg-transparent px-3 py-1.5 text-base text-muted-foreground hover:text-primary dark:hover:bg-accent/50 dark:data-[state=open]:hover:bg-accent/50 [&>svg]:size-4'>
+              <NavigationMenuTrigger className="bg-transparent px-3 py-1.5 text-base text-muted-foreground hover:text-primary dark:hover:bg-accent/50 dark:data-[state=open]:hover:bg-accent/50 [&>svg]:size-4">
                 {navItem.title}
               </NavigationMenuTrigger>
               <NavigationMenuContent className="data-[motion=from-start]:slide-in-from-left-30! data-[motion=to-start]:slide-out-to-left-30! data-[motion=from-end]:slide-in-from-right-30! data-[motion=to-end]:slide-out-to-right-30! absolute w-auto">

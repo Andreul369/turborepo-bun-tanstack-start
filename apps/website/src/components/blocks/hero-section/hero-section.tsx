@@ -1,13 +1,13 @@
-import { Link } from '@tanstack/react-router';
-import { getLocale, locales, setLocale } from '@monorepo/i18n/runtime';
-import { t } from '@monorepo/i18n/utils';
-import { Badge } from '@monorepo/ui/badge';
-import { Button, buttonVariants } from '@monorepo/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@monorepo/ui/card';
-import { Input } from '@monorepo/ui/input';
-import { ArrowUpRightIcon, CalendarDaysIcon } from 'lucide-react';
-import { toast } from 'sonner';
-import type { BlogPost } from '@/components/blocks/blog-component/blog-component';
+import { Link } from "@tanstack/react-router";
+import { getLocale, locales, setLocale } from "@monorepo/i18n/runtime";
+import { t } from "@monorepo/i18n/utils";
+import { Badge } from "@monorepo/ui/badge";
+import { Button, buttonVariants } from "@monorepo/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@monorepo/ui/card";
+import { Input } from "@monorepo/ui/input";
+import { ArrowUpRightIcon, CalendarDaysIcon } from "lucide-react";
+import { toast } from "sonner";
+import type { BlogPost } from "@/components/blocks/blog-component/blog-component";
 
 const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
   const featuredPosts = blogData.filter((post) => post.featured);
@@ -27,7 +27,7 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
           </Badge>
 
           <Badge variant="outline" className="font-normal text-sm">
-            {t('common.welcome')} to the website!
+            {t("common.welcome")} to the website!
           </Badge>
           <h1 className="text-balance font-semibold text-3xl leading-[1.29167] sm:text-4xl lg:text-5xl">
             Build Better Products with Insights that Drive Real Impact.
@@ -45,7 +45,7 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
             <Button
               size="lg"
               className="text-base max-sm:w-full"
-              onClick={() => toast.success('You clicked a button! So cool!')}
+              onClick={() => toast.success("You clicked a button! So cool!")}
             >
               Click to see a toast
             </Button>
@@ -54,9 +54,9 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
 
         <Card>
           <CardHeader>
-            <CardTitle className='text-center'>Testing locales</CardTitle>
+            <CardTitle className="text-center">Testing locales</CardTitle>
           </CardHeader>
-          <CardContent className='flex items-center justify-center gap-2'>
+          <CardContent className="flex items-center justify-center gap-2">
             {locales.map((locale) => (
               <Button
                 key={locale}
@@ -117,7 +117,8 @@ const HeroSection = ({ blogData }: { blogData: BlogPost[] }) => {
                       to="/"
                       className={buttonVariants({
                         size: "icon",
-                        className: "border bg-background text-foreground hover:border-transparent hover:bg-primary! hover:text-primary-foreground group-hover:border-transparent group-hover:bg-primary! group-hover:text-primary-foreground"
+                        className:
+                          "border bg-background text-foreground hover:border-transparent hover:bg-primary! hover:text-primary-foreground group-hover:border-transparent group-hover:bg-primary! group-hover:text-primary-foreground",
                       })}
                     >
                       <ArrowUpRightIcon />

@@ -1,9 +1,9 @@
 // import { deLocalizeUrl, localizeUrl } from '@monorepo/i18n/runtime';
-import { createRouter as createTanStackRouter } from '@tanstack/react-router';
-import { getContext } from '@/providers/trpc-query-provider';
+import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import { getContext } from "@/providers/trpc-query-provider";
 
 // Import the generated route tree
-import { routeTree } from './routeTree.gen';
+import { routeTree } from "./routeTree.gen";
 
 // Create a new router instance
 export const getRouter = () => {
@@ -13,7 +13,7 @@ export const getRouter = () => {
     context: getContext(),
 
     scrollRestoration: true,
-    defaultPreload: 'intent',
+    defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
 
     // rewrite: {
@@ -25,7 +25,7 @@ export const getRouter = () => {
   return router;
 };
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface Register {
     router: ReturnType<typeof getRouter>;
   }

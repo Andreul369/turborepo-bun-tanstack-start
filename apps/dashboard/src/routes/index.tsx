@@ -43,8 +43,8 @@ function App({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar variant="inset" />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+      <SidebarInset className="shadow-md dark:shadow-none">
+        <header className="flex h-16 shrink-0 items-center justify-between border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -63,14 +63,20 @@ function App({ children }: { children: React.ReactNode }) {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+
+          <div className="px-4">
+            <ThemeToggle />
+          </div>
         </header>
         {/* <div className="flex flex-1 flex-col gap-4 p-4 pt-0"> */}
         <div className="flex flex-1 flex-col gap-4 p-4">
+          {children}
           <div className="grid auto-rows-min gap-4 md:grid-cols-3">
             <div className="aspect-video rounded-xl bg-muted" />
             <div className="aspect-video rounded-xl bg-muted" />
             <div className="aspect-video rounded-xl bg-muted" />
           </div>
+          <div className="min-h-screen flex-1 rounded-xl bg-muted md:min-h-min" />
           <div className="min-h-screen flex-1 rounded-xl bg-muted md:min-h-min" />
         </div>
       </SidebarInset>
