@@ -1,9 +1,4 @@
-// import { useTRPC } from '@/trpc/client';
-
-// import { useQuery } from '@tanstack/react-query';
-import { createFileRoute } from "@tanstack/react-router";
-import { getLocale, locales, setLocale } from "@monorepo/i18n/runtime";
-import { t } from "@monorepo/i18n/utils";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,30 +7,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@monorepo/ui/breadcrumb";
-import { Button } from "@monorepo/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@monorepo/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@monorepo/ui/dropdown-menu";
 import { Separator } from "@monorepo/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@monorepo/ui/sidebar";
-import { toast } from "sonner";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export const Route = createFileRoute("/")({
-  component: App,
-  // loader: async ({ context }) =>
-  //   await context.queryClient.prefetchQuery(context.trpc.users.me.queryOptions()),
+export const Route = createFileRoute("/_dashboard")({
+  component: DashboardWrapper,
 });
 
-function App({ children }: { children: React.ReactNode }) {
+function DashboardWrapper() {
   // const trpc = useTRPC();
   // const userLoaderData = Route.useLoaderData();
   // const user = useQuery(trpc.users.me.queryOptions());
@@ -70,14 +51,7 @@ function App({ children }: { children: React.ReactNode }) {
         </header>
         {/* <div className="flex flex-1 flex-col gap-4 p-4 pt-0"> */}
         <div className="flex flex-1 flex-col gap-4 p-4">
-          {children}
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted" />
-            <div className="aspect-video rounded-xl bg-muted" />
-            <div className="aspect-video rounded-xl bg-muted" />
-          </div>
-          <div className="min-h-screen flex-1 rounded-xl bg-muted md:min-h-min" />
-          <div className="min-h-screen flex-1 rounded-xl bg-muted md:min-h-min" />
+          <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>

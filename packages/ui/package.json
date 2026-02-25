@@ -57,6 +57,7 @@
     "./dropdown-menu": "./src/components/dropdown-menu.tsx",
     "./empty": "./src/components/empty.tsx",
     "./email-tag-input": "./src/components/email-tag-input.tsx",
+    "./field": "./src/components/field.tsx",
     "./hooks": "./src/hooks/index.ts",
     "./hover-card": "./src/components/hover-card.tsx",
     "./input-group": "./src/components/input-group.tsx",

@@ -1,7 +1,6 @@
 // import { deLocalizeUrl, localizeUrl } from '@monorepo/i18n/runtime';
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { getContext } from "@/providers/trpc-query-provider";
-
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 

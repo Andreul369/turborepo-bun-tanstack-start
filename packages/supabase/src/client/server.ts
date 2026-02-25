@@ -1,5 +1,5 @@
-import { createServerClient } from "@supabase/ssr";
 import { getCookies, setCookie } from "@tanstack/react-start/server";
+import { createServerClient } from "@supabase/ssr";
 import type { Database } from "../types";
 
 const conWarn = console.warn;

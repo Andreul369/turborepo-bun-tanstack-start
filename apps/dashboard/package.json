@@ -23,6 +23,7 @@
     "@monorepo/ui": "workspace:*",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-devtools": "catalog:",
+    "@tanstack/react-form-start": "^1.28.3",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "catalog:",
     "@tanstack/react-router": "catalog:",

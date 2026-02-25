@@ -1,6 +1,3 @@
-import type { AppRouter } from "@monorepo/api/trpc/routers/_app";
-import { getLocale } from "@monorepo/i18n/runtime";
-import { Toaster } from "@monorepo/ui/sonner";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import {
@@ -10,6 +7,9 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import type { AppRouter } from "@monorepo/api/trpc/routers/_app";
+import { getLocale } from "@monorepo/i18n/runtime";
+import { Toaster } from "@monorepo/ui/sonner";
 import type { TRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { Providers } from "@/providers";
 import appCss from "../globals.css?url";

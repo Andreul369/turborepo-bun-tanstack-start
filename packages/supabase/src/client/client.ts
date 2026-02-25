@@ -3,7 +3,7 @@ import type { Database } from "../types";
 
 export const createClient = () => {
   return createBrowserClient<Database>(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
+    import.meta.env.VITE_SUPABASE_URL!,
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY!,
   );
 };
