@@ -2,7 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { useTRPC } from "@/trpc/client";
 
-export const Route = createFileRoute("/_dashboard/")({
+export const Route = createFileRoute("/_authed/")({
   // Server-side prefetch in the loader
   beforeLoad: async ({ context }) => {
     await context.queryClient.ensureQueryData(context.trpc.users.me.queryOptions());
@@ -12,10 +12,10 @@ export const Route = createFileRoute("/_dashboard/")({
 });
 
 function OverviewPage() {
-  const trpc = useTRPC();
-  const user = useSuspenseQuery(trpc.users.me.queryOptions());
+  // const trpc = useTRPC();
+  // const user = useSuspenseQuery(trpc.users.me.queryOptions());
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <>

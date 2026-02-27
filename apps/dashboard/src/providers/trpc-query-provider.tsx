@@ -9,17 +9,17 @@ import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
 import { TRPCProvider } from "@/trpc/client";
 
-function getUrl() {
-  const base = (() => {
-    if (typeof window !== "undefined") {
-      return import.meta.env.VITE_API_URL || "";
-    }
-    return process.env.API_URL || "http://localhost:3003";
-  })();
-  return `${base}/trpc`;
-}
+const getUrl = createIsomorphicFn()
+  .server(() => {
+    const base = process.env.API_URL || "http://localhost:3003";
+    return `${base}/trpc`;
+  })
+  .client(() => {
+    const base = import.meta.env.VITE_API_URL || "";
+    return `${base}/trpc`;
+  });
 
-const getHeader2 = createIsomorphicFn()
+const getHeaders = createIsomorphicFn()
   .server(async () => {
     const supabase = await createClient();
 
@@ -47,26 +47,16 @@ const getHeader2 = createIsomorphicFn()
     return result;
   });
 
-// const getHeaders = createServerFn({ method: "GET" }).handler(async () => {
-//   const supabase = await createClient();
-
-//     const {
-//       data: { session },
-//     } = await supabase.auth.getSession();
-
-//     const result: Record<string, string> = {
-//       Authorization: `Bearer ${session?.access_token}`,
-//     };
-
-//     return result;
-// });
-
 export const trpcClient = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
       url: getUrl(),
       transformer: superjson,
-      headers: getHeader2(),
+      async headers() {
+        const headers = await getHeaders();
+        console.log("SENDING HEADERS:", headers);
+        return headers;
+      },
     }),
     loggerLink({
       enabled: (opts) =>
@@ -99,6 +89,7 @@ export function getContext() {
     queryClient: queryClient,
     client: trpcClient,
   });
+
   context = {
     queryClient,
     trpc: serverHelpers,

@@ -10,73 +10,84 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as DashboardRouteRouteImport } from './routes/_dashboard/route'
-import { Route as DashboardIndexRouteImport } from './routes/_dashboard/index'
-import { Route as DashboardJobsRouteImport } from './routes/_dashboard/jobs'
-import { Route as DashboardFinanceRouteImport } from './routes/_dashboard/finance'
+import { Route as AuthedRouteImport } from './routes/_authed'
+import { Route as AuthedIndexRouteImport } from './routes/_authed/index'
+import { Route as AuthedJobsRouteImport } from './routes/_authed/jobs'
+import { Route as AuthedFinanceRouteImport } from './routes/_authed/finance'
+import { Route as ApiAuthIndexRouteImport } from './routes/api/auth/index'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRouteRoute = DashboardRouteRouteImport.update({
-  id: '/_dashboard',
+const AuthedRoute = AuthedRouteImport.update({
+  id: '/_authed',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardIndexRoute = DashboardIndexRouteImport.update({
+const AuthedIndexRoute = AuthedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => DashboardRouteRoute,
+  getParentRoute: () => AuthedRoute,
 } as any)
-const DashboardJobsRoute = DashboardJobsRouteImport.update({
+const AuthedJobsRoute = AuthedJobsRouteImport.update({
   id: '/jobs',
   path: '/jobs',
-  getParentRoute: () => DashboardRouteRoute,
+  getParentRoute: () => AuthedRoute,
 } as any)
-const DashboardFinanceRoute = DashboardFinanceRouteImport.update({
+const AuthedFinanceRoute = AuthedFinanceRouteImport.update({
   id: '/finance',
   path: '/finance',
-  getParentRoute: () => DashboardRouteRoute,
+  getParentRoute: () => AuthedRoute,
+} as any)
+const ApiAuthIndexRoute = ApiAuthIndexRouteImport.update({
+  id: '/api/auth/',
+  path: '/api/auth/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof DashboardIndexRoute
+  '/': typeof AuthedIndexRoute
   '/login': typeof LoginRoute
-  '/finance': typeof DashboardFinanceRoute
-  '/jobs': typeof DashboardJobsRoute
+  '/finance': typeof AuthedFinanceRoute
+  '/jobs': typeof AuthedJobsRoute
+  '/api/auth/': typeof ApiAuthIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/finance': typeof DashboardFinanceRoute
-  '/jobs': typeof DashboardJobsRoute
-  '/': typeof DashboardIndexRoute
+  '/finance': typeof AuthedFinanceRoute
+  '/jobs': typeof AuthedJobsRoute
+  '/': typeof AuthedIndexRoute
+  '/api/auth': typeof ApiAuthIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_dashboard': typeof DashboardRouteRouteWithChildren
+  '/_authed': typeof AuthedRouteWithChildren
   '/login': typeof LoginRoute
-  '/_dashboard/finance': typeof DashboardFinanceRoute
-  '/_dashboard/jobs': typeof DashboardJobsRoute
-  '/_dashboard/': typeof DashboardIndexRoute
+  '/_authed/finance': typeof AuthedFinanceRoute
+  '/_authed/jobs': typeof AuthedJobsRoute
+  '/_authed/': typeof AuthedIndexRoute
+  '/api/auth/': typeof ApiAuthIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/finance' | '/jobs'
+  fullPaths: '/' | '/login' | '/finance' | '/jobs' | '/api/auth/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/finance' | '/jobs' | '/'
+  to: '/login' | '/finance' | '/jobs' | '/' | '/api/auth'
   id:
     | '__root__'
-    | '/_dashboard'
+    | '/_authed'
     | '/login'
-    | '/_dashboard/finance'
-    | '/_dashboard/jobs'
-    | '/_dashboard/'
+    | '/_authed/finance'
+    | '/_authed/jobs'
+    | '/_authed/'
+    | '/api/auth/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  AuthedRoute: typeof AuthedRouteWithChildren
   LoginRoute: typeof LoginRoute
+  ApiAuthIndexRoute: typeof ApiAuthIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -88,56 +99,63 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_dashboard': {
-      id: '/_dashboard'
+    '/_authed': {
+      id: '/_authed'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof DashboardRouteRouteImport
+      preLoaderRoute: typeof AuthedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/': {
-      id: '/_dashboard/'
+    '/_authed/': {
+      id: '/_authed/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof DashboardIndexRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthedIndexRouteImport
+      parentRoute: typeof AuthedRoute
     }
-    '/_dashboard/jobs': {
-      id: '/_dashboard/jobs'
+    '/_authed/jobs': {
+      id: '/_authed/jobs'
       path: '/jobs'
       fullPath: '/jobs'
-      preLoaderRoute: typeof DashboardJobsRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthedJobsRouteImport
+      parentRoute: typeof AuthedRoute
     }
-    '/_dashboard/finance': {
-      id: '/_dashboard/finance'
+    '/_authed/finance': {
+      id: '/_authed/finance'
       path: '/finance'
       fullPath: '/finance'
-      preLoaderRoute: typeof DashboardFinanceRouteImport
-      parentRoute: typeof DashboardRouteRoute
+      preLoaderRoute: typeof AuthedFinanceRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/api/auth/': {
+      id: '/api/auth/'
+      path: '/api/auth'
+      fullPath: '/api/auth/'
+      preLoaderRoute: typeof ApiAuthIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface DashboardRouteRouteChildren {
-  DashboardFinanceRoute: typeof DashboardFinanceRoute
-  DashboardJobsRoute: typeof DashboardJobsRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
+interface AuthedRouteChildren {
+  AuthedFinanceRoute: typeof AuthedFinanceRoute
+  AuthedJobsRoute: typeof AuthedJobsRoute
+  AuthedIndexRoute: typeof AuthedIndexRoute
 }
 
-const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardFinanceRoute: DashboardFinanceRoute,
-  DashboardJobsRoute: DashboardJobsRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
+const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedFinanceRoute: AuthedFinanceRoute,
+  AuthedJobsRoute: AuthedJobsRoute,
+  AuthedIndexRoute: AuthedIndexRoute,
 }
 
-const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
-  DashboardRouteRouteChildren,
-)
+const AuthedRouteWithChildren =
+  AuthedRoute._addFileChildren(AuthedRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  AuthedRoute: AuthedRouteWithChildren,
   LoginRoute: LoginRoute,
+  ApiAuthIndexRoute: ApiAuthIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

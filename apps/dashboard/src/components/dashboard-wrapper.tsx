@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { Outlet } from "@tanstack/react-router";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,15 +12,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@monorepo/ui/side
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export const Route = createFileRoute("/_dashboard")({
-  component: DashboardWrapper,
-});
-
-function DashboardWrapper() {
-  // const trpc = useTRPC();
-  // const userLoaderData = Route.useLoaderData();
-  // const user = useQuery(trpc.users.me.queryOptions());
-
+export function DashboardWrapper() {
   return (
     <SidebarProvider>
       <AppSidebar variant="inset" />
@@ -49,7 +41,7 @@ function DashboardWrapper() {
             <ThemeToggle />
           </div>
         </header>
-        {/* <div className="flex flex-1 flex-col gap-4 p-4 pt-0"> */}
+        {/*  className="flex flex-1 flex-col gap-4 p-4 pt-0"> */}
         <div className="flex flex-1 flex-col gap-4 p-4">
           <Outlet />
         </div>

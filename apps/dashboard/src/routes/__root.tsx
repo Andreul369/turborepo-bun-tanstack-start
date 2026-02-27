@@ -7,8 +7,10 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { createServerFn } from "@tanstack/react-start";
 import type { AppRouter } from "@monorepo/api/trpc/routers/_app";
 import { getLocale } from "@monorepo/i18n/runtime";
+import { createClient } from "@monorepo/supabase/server";
 import { Toaster } from "@monorepo/ui/sonner";
 import type { TRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { Providers } from "@/providers";
@@ -20,6 +22,17 @@ interface MyRouterContext {
   trpc: TRPCOptionsProxy<AppRouter>;
 }
 
+const fetchUser = createServerFn({ method: "GET" }).handler(async () => {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+
+  if (!data?.claims) {
+    return null;
+  }
+
+  return { user: data.claims };
+});
+
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   beforeLoad: async () => {
     // Other redirect strategies are possible; see
@@ -27,6 +40,10 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     if (typeof document !== "undefined") {
       document.documentElement.setAttribute("lang", getLocale());
     }
+
+    const user = await fetchUser();
+
+    return user;
   },
 
   head: () => ({

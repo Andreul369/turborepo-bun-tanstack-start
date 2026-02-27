@@ -15,7 +15,9 @@ interface TRPCContext {
 
 export const createTRPCContext = async (_: unknown, ctx: Context): Promise<TRPCContext> => {
   const accessToken = ctx.req.header("Authorization")?.split(" ")[1];
+  console.log("ACCESS TOKEN FROM HEADER:", accessToken);
   const session = await verifyAccessToken(accessToken);
+  console.log("SESSION::createTRPCContext", session);
 
   const supabase = await createClient(accessToken);
 
@@ -35,9 +37,9 @@ export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
 export const protectedProcedure = t.procedure.use(async (opts) => {
   const { session } = opts.ctx;
-
+  console.log("SESSSSSION::::", session);
   if (!session) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Protected procedure called now" });
   }
 
   return opts.next({

@@ -21,7 +21,7 @@
     "camelcase-keys": "catalog:",
     "drizzle-orm": "^0.45.0",
     "nanoid": "catalog:",
-    "pg": "^8.16.3",
+    "pg": "^8.19.0",
     "snakecase-keys": "^9.0.2"
   },
   "devDependencies": {

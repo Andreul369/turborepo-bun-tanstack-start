@@ -6,6 +6,9 @@ import { LoginForm } from "@/components/forms/login-form";
 import { SignupForm } from "@/components/forms/signup-form";
 
 export const Route = createFileRoute("/login")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    return_to: (search.return_to as string) || undefined,
+  }),
   component: RouteComponent,
 });
 
