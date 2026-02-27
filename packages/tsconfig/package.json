@@ -2,11 +2,6 @@
   "name": "@monorepo/tsconfig",
   "version": "0.0.1",
   "description": "Shared TypeScript configurations for the monorepo",
-  "exports": {
-    "./library": "./library.json",
-    "./tanstack-start": "./tanstack-start.json",
-    "./react-library": "./react-library.json"
-  },
   "files": [
     "*.json"
   ],
