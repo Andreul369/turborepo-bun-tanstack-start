@@ -27,13 +27,14 @@
     "nitro": "latest",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "sonner": "catalog:",
     "tailwindcss": "catalog:"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
     "@inlang/paraglide-js": "^2.13.0",
     "@monorepo/tsconfig": "workspace:*",
-    "@tanstack/devtools-vite": "^0.5.1",
+    "@tanstack/devtools-vite": "^0.5.2",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

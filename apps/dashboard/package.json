@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@monorepo/tsconfig": "workspace:*",
-    "@tanstack/devtools-vite": "^0.5.1",
+    "@tanstack/devtools-vite": "^0.5.2",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
