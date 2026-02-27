@@ -54,7 +54,6 @@ export const trpcClient = createTRPCClient<AppRouter>({
       transformer: superjson,
       async headers() {
         const headers = await getHeaders();
-        console.log("SENDING HEADERS:", headers);
         return headers;
       },
     }),

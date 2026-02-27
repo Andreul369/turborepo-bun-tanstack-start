@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Shared TypeScript configurations for the monorepo",
   "exports": {
-    "./library.json": "./library.json",
-    "./tanstack-start.json": "./tanstack-start.json",
-    "./react-library.json": "./react-library.json"
+    "./library": "./library.json",
+    "./tanstack-start": "./tanstack-start.json",
+    "./react-library": "./react-library.json"
   },
   "files": [
     "*.json"
