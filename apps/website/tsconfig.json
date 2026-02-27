@@ -1,5 +1,5 @@
 {
-  "extends": "@monorepo/tsconfig/tanstack-start.json",
+  "extends": "../../packages/tsconfig/tanstack-start.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
