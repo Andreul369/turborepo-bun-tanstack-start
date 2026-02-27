@@ -16,6 +16,3 @@ export const todosRouter = {
     return newTodo;
   }),
 } satisfies TRPCRouterRecord;
-
-
-export type TodosRouter = typeof todosRouter;
