@@ -3,6 +3,8 @@
   "compilerOptions": {
     "allowJs": true,
     "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "outDir": "./src/paraglide"
   },
   "include": ["src/paraglide"],

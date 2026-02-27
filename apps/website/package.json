@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.4",
-    "@inlang/paraglide-js": "^2.13.0",
+    "@inlang/paraglide-js": "catalog:",
     "@monorepo/tsconfig": "workspace:*",
     "@tanstack/devtools-vite": "^0.5.2",
     "@types/node": "catalog:",

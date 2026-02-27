@@ -45,6 +45,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@inlang/paraglide-js": "catalog:",
     "@monorepo/tsconfig": "workspace:*",
     "@tanstack/devtools-vite": "^0.5.2",
     "@types/node": "catalog:",

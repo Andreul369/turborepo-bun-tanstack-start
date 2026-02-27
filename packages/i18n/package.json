@@ -13,12 +13,18 @@
       "types": "./src/paraglide/runtime.d.ts",
       "default": "./src/paraglide/runtime.js"
     },
-    "./messages": "./src/paraglide/messages.js",
-    "./server": "./src/paraglide/server.js",
+    "./messages": {
+      "types": "./src/paraglide/messages.d.ts",
+      "default": "./src/paraglide/messages.js"
+    },
+    "./server": {
+      "types": "./src/paraglide/server.d.ts",
+      "default": "./src/paraglide/server.js"
+    },
     "./utils": "./src/utils.ts"
   },
   "dependencies": {
-    "@inlang/paraglide-js": "^2.13.0"
+    "@inlang/paraglide-js": "catalog:"
   },
   "devDependencies": {
     "@inlang/cli": "^3.1.6",

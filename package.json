@@ -27,6 +27,7 @@
   "catalog": {
     "@date-fns/tz": "^1.4.1",
     "@fast-csv/format": "^5.0.5",
+    "@inlang/paraglide-js": "^2.13.0",
     "@supabase/supabase-js": "^2.98.0",
     "@sentry/bun": "^10.40.0",
     "@tanstack/react-devtools": "^0.9.6",
