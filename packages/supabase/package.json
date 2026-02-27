@@ -29,6 +29,7 @@
     "supabase": "^2.76.15"
   },
   "devDependencies": {
+    "@monorepo/tsconfig": "workspace:*",
     "@types/bun": "latest",
     "drizzle-kit": "^0.31.8"
   }
