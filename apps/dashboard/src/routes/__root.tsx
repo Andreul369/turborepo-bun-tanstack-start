@@ -25,11 +25,9 @@ interface MyRouterContext {
 const fetchUser = createServerFn({ method: "GET" }).handler(async () => {
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
-
   if (!data?.claims) {
     return null;
   }
-
   return { user: data.claims };
 });
 
@@ -40,10 +38,6 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
     if (typeof document !== "undefined") {
       document.documentElement.setAttribute("lang", getLocale());
     }
-
-    const user = await fetchUser();
-
-    return user;
   },
 
   head: () => ({

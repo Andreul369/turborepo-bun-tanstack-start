@@ -1,9 +1,8 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { createIsomorphicFn, createServerFn } from "@tanstack/react-start";
+import { createIsomorphicFn } from "@tanstack/react-start";
 import { createClient as createBrowserClient } from "@monorepo/supabase/client";
 import { createClient } from "@monorepo/supabase/server";
 import { DashboardWrapper } from "@/components/dashboard-wrapper";
-import { loginSchema } from "@/components/forms/login-form";
 
 const checkAuth = createIsomorphicFn()
   .server(async () => {
@@ -19,23 +18,6 @@ const checkAuth = createIsomorphicFn()
       data: { session },
     } = await supabase.auth.getSession();
     return !!session;
-  });
-
-export const loginFn = createServerFn({ method: "POST" })
-  .inputValidator(loginSchema)
-  .handler(async ({ data }) => {
-    const supabase = await createClient();
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
-    });
-
-    if (error) {
-      return {
-        error: true,
-        message: error.message,
-      };
-    }
   });
 
 export const Route = createFileRoute("/_authed")({

@@ -4,6 +4,7 @@ import {
   check,
   customType,
   foreignKey,
+  pgPolicy,
   pgTable,
   text,
   timestamp,
@@ -142,7 +143,7 @@ export const users = pgTable(
     avatarUrl: text("avatar_url"),
     email: text().notNull(),
     role: text("role").default("member").notNull(),
-    locale: text("password_hash").notNull(),
+    locale: text().default("en"),
     weekStartsOnMonday: boolean("week_starts_on_monday").default(false),
     timezone: text(),
     dateFormat: text("date_format"),
@@ -151,24 +152,21 @@ export const users = pgTable(
     createdAt: timestamp("created_at", {
       withTimezone: true,
       mode: "string",
-    })
-      .defaultNow()
-      .notNull(),
+    }).defaultNow(),
     updatedAt: timestamp("updated_at", {
       withTimezone: true,
       mode: "string",
-    })
-      .defaultNow()
-      .notNull(),
-    deletedAt: timestamp("deleted_at", {
-      withTimezone: true,
-      mode: "string",
-    }),
+    }).defaultNow(),
   },
   (table) => [
     unique("users_email_unique").on(table.email),
     // virtual enum check
     check("users_role_check", sql`${table.role} in ('admin', 'member')`),
+    pgPolicy("Users can select their own profile.", {
+      as: "permissive",
+      for: "select",
+      to: ["public"],
+    }),
   ],
 );
 

@@ -1,6 +1,8 @@
-import { mergeForm, useForm, useTransform } from "@tanstack/react-form-start";
+import { useForm } from "@tanstack/react-form-start";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useRouter } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { createClient } from "@monorepo/supabase/server";
 import { Button } from "@monorepo/ui/button";
 import { cn } from "@monorepo/ui/cn";
 import {
@@ -14,7 +16,6 @@ import {
 import { Input } from "@monorepo/ui/input";
 import { toast } from "sonner";
 import * as z from "zod";
-import { loginFn } from "@/routes/_authed";
 import { OAuthSignIn } from "../oauth-sign-in";
 
 export const loginSchema = z.object({
@@ -24,6 +25,23 @@ export const loginSchema = z.object({
     .min(8, "Password must be at least 8 characters")
     .max(100, "Password must be at most 100 characters"),
 });
+
+export const loginFn = createServerFn({ method: "POST" })
+  .inputValidator(loginSchema)
+  .handler(async ({ data }) => {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (error) {
+      return {
+        error: true,
+        message: error.message,
+      };
+    }
+  });
 
 export function LoginForm({
   className,

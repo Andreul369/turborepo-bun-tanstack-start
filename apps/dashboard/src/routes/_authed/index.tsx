@@ -4,18 +4,18 @@ import { useTRPC } from "@/trpc/client";
 
 export const Route = createFileRoute("/_authed/")({
   // Server-side prefetch in the loader
-  beforeLoad: async ({ context }) => {
-    await context.queryClient.ensureQueryData(context.trpc.users.me.queryOptions());
-    return {};
+  loader: async ({ context: { trpc, queryClient } }) => {
+    await queryClient.ensureQueryData(trpc.users.me.queryOptions());
+    return;
   },
   component: OverviewPage,
 });
 
 function OverviewPage() {
-  // const trpc = useTRPC();
-  // const user = useSuspenseQuery(trpc.users.me.queryOptions());
+  const trpc = useTRPC();
+  const user = useSuspenseQuery(trpc.users.me.queryOptions());
 
-  // console.log(user);
+  console.log(user);
 
   return (
     <>

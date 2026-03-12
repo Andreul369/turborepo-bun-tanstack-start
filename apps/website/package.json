@@ -24,25 +24,25 @@
     "@tanstack/react-router-ssr-query": "catalog:",
     "@tanstack/react-start": "catalog:",
     "lucide-react": "catalog:",
-    "nitro": "latest",
+    "nitro": "3.0.260311-beta",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sonner": "catalog:",
     "tailwindcss": "catalog:"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.4",
+    "@biomejs/biome": "^2.4.6",
     "@inlang/paraglide-js": "catalog:",
     "@monorepo/tsconfig": "workspace:*",
-    "@tanstack/devtools-vite": "^0.5.2",
+    "@tanstack/devtools-vite": "^0.5.5",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@vitejs/plugin-react": "^5.2.0",
     "babel-plugin-react-compiler": "catalog:",
     "typescript": "catalog:",
-    "vite": "^8.0.0-beta.15",
+    "vite": "^8.0.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   }
 }

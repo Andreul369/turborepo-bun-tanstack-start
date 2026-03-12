@@ -33,6 +33,7 @@ const t = initTRPC.context<TRPCContext>().create({
 export const createTRPCRouter = t.router;
 
 export const publicProcedure = t.procedure;
+
 export const protectedProcedure = t.procedure.use(async (opts) => {
   const { session } = opts.ctx;
   if (!session) {

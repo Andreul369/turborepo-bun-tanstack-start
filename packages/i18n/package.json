@@ -27,7 +27,7 @@
     "@inlang/paraglide-js": "catalog:"
   },
   "devDependencies": {
-    "@inlang/cli": "^3.1.6",
+    "@inlang/cli": "^3.1.7",
     "@monorepo/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "typescript": "^5.9.3"

@@ -23,7 +23,7 @@
     "@monorepo/ui": "workspace:*",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-devtools": "catalog:",
-    "@tanstack/react-form-start": "^1.28.3",
+    "@tanstack/react-form-start": "^1.28.5",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "catalog:",
     "@tanstack/react-router": "catalog:",
@@ -31,11 +31,11 @@
     "@tanstack/react-router-ssr-query": "catalog:",
     "@tanstack/react-start": "catalog:",
     "@trigger.dev/sdk": "catalog:",
-    "@trpc/client": "^11.10.0",
-    "@trpc/tanstack-react-query": "^11.10.0",
+    "@trpc/client": "^11.12.0",
+    "@trpc/tanstack-react-query": "^11.12.0",
     "date-fns": "catalog:",
     "lucide-react": "catalog:",
-    "nitro": "latest",
+    "nitro": "3.0.260311-beta",
     "react": "catalog:",
     "react-dom": "catalog:",
     "resend": "catalog:",
@@ -47,15 +47,15 @@
   "devDependencies": {
     "@inlang/paraglide-js": "catalog:",
     "@monorepo/tsconfig": "workspace:*",
-    "@tanstack/devtools-vite": "^0.5.2",
+    "@tanstack/devtools-vite": "^0.5.5",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@vitejs/plugin-react": "^5.2.0",
     "babel-plugin-react-compiler": "catalog:",
     "typescript": "catalog:",
-    "vite": "^8.0.0-beta.15",
+    "vite": "^8.0.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   }
 }
