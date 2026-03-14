@@ -15,7 +15,7 @@ const getUrl = createIsomorphicFn()
     return `${base}/trpc`;
   })
   .client(() => {
-    const base = import.meta.env.VITE_API_URL || "";
+    const base = import.meta.env.VITE_API_URL || "http://localhost:3003";
     return `${base}/trpc`;
   });
 

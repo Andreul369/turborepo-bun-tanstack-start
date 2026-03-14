@@ -16,7 +16,6 @@ interface TRPCContext {
 export const createTRPCContext = async (_: unknown, ctx: Context): Promise<TRPCContext> => {
   const accessToken = ctx.req.header("Authorization")?.split(" ")[1];
   const session = await verifyAccessToken(accessToken);
-
   const supabase = await createClient(accessToken);
 
   return {
