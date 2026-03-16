@@ -1,12 +1,11 @@
 import { trpcServer } from "@hono/trpc-server";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { createLoggerWithContext, logger } from "@monorepo/logger";
+import { logger } from "@monorepo/logger";
 import { cors } from "hono/cors";
 import { secureHeaders } from "hono/secure-headers";
 import { createTRPCContext } from "./trpc/init";
 import { appRouter } from "./trpc/routers/_app";
 import { httpLogger } from "./utils/logger";
-import { getRequestTrace } from "./utils/request-trace";
 
 const app = new OpenAPIHono();
 
@@ -33,11 +32,6 @@ app.use(
   }),
 );
 
-// Always emit Server-Timing so the browser Network tab shows server-side duration.
-// When DEBUG_PERF is on, also log structured details to stdout.
-const debugPerf = process.env.DEBUG_PERF === "true";
-const perfLoggerHono = debugPerf ? createLoggerWithContext("perf:trpc") : null;
-
 app.use("/trpc/*", async (c, next) => {
   const start = performance.now();
   await next();
@@ -48,18 +42,6 @@ app.use("/trpc/*", async (c, next) => {
     "Server-Timing",
     `total;dur=${elapsed.toFixed(1)},procedures;desc="${procedures.join(",")}"`,
   );
-
-  if (perfLoggerHono) {
-    const { requestId, cfRay } = getRequestTrace(c.req);
-    perfLoggerHono.info("request", {
-      totalMs: +elapsed.toFixed(2),
-      procedureCount: procedures.length,
-      procedures,
-      status: c.res.status,
-      requestId,
-      cfRay,
-    });
-  }
 });
 
 app.use(
@@ -68,7 +50,9 @@ app.use(
     router: appRouter,
     createContext: createTRPCContext,
     onError: ({ error, path }) => {
+      console.error("[tRPC ERROR]", path, error.message, error.cause);
       logger.error(`[tRPC] ${path}`, {
+        
         message: error.message,
         code: error.code,
         cause: error.cause instanceof Error ? error.cause.message : undefined,

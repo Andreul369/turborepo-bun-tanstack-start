@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { useTRPC } from "@/trpc/client";
 
@@ -6,22 +6,22 @@ export const Route = createFileRoute("/_authed/")({
   // Server-side prefetch in the loader
   loader: async ({ context: { trpc, queryClient } }) => {
     await queryClient.ensureQueryData(trpc.users.me.queryOptions());
-    return;
   },
   component: OverviewPage,
 });
 
 function OverviewPage() {
   const trpc = useTRPC();
-  const user = useSuspenseQuery(trpc.users.me.queryOptions());
+  const { data: user } = useQuery(trpc.users.me.queryOptions());
+  // const username= user.
 
-  console.log(user);
-
+  console.log("the logged in user:::", user);
   return (
     <>
       <div className="grid auto-rows-min gap-4 md:grid-cols-3">
         <div className="flex aspect-video items-center justify-center rounded-xl bg-muted">
           <h1 className="font-semibold text-3xl">Overview Page</h1>
+          {/* <h1>{user.}</h1> */}
         </div>
         <div className="flex aspect-video items-center justify-center rounded-xl bg-muted">
           <h1 className="font-semibold text-3xl">Overview Page</h1>
