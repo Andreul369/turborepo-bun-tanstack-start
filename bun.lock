@@ -171,6 +171,16 @@
         "typescript": "catalog:",
       },
     },
+    "packages/stripe": {
+      "name": "@monorepo/stripe",
+      "version": "0.0.1",
+      "dependencies": {
+        "@date-fns/tz": "catalog:",
+        "@date-fns/utc": "^2.1.1",
+        "@monorepo/logger": "workspace:*",
+        "stripe": "^20.4.1",
+      },
+    },
     "packages/supabase": {
       "name": "@monorepo/supabase",
       "version": "0.0.1",
@@ -496,6 +506,8 @@
     "@monorepo/i18n": ["@monorepo/i18n@workspace:packages/i18n"],
 
     "@monorepo/logger": ["@monorepo/logger@workspace:packages/logger"],
+
+    "@monorepo/stripe": ["@monorepo/stripe@workspace:packages/stripe"],
 
     "@monorepo/supabase": ["@monorepo/supabase@workspace:packages/supabase"],
 
@@ -1851,7 +1863,9 @@
 
     "strip-json-comments": ["strip-json-comments@5.0.3", "", {}, "sha512-1tB5mhVo7U+ETBKNf92xT4hrQa3pm0MZ0PQvuDnWgAAGHDsfp4lPSpiS6psrSiet87wyGPh9ft6wmhOMQ0hDiw=="],
 
-    "supabase": ["supabase@2.81.2", "", { "dependencies": { "bin-links": "^6.0.0", "https-proxy-agent": "^7.0.2", "node-fetch": "^3.3.2", "tar": "7.5.11" }, "bin": { "supabase": "bin/supabase" } }, "sha512-5hVmXR0UtTEagLXlmVMsBk3JfnCAddYzyNirq9TNUkHbjL5xAGuzSKgvOd/3CHrOzoBx6WK6/jMya37ipFp47g=="],
+    "stripe": ["stripe@20.4.1", "", { "peerDependencies": { "@types/node": ">=16" }, "optionalPeers": ["@types/node"] }, "sha512-axCguHItc8Sxt0HC6aSkdVRPffjYPV7EQqZRb2GkIa8FzWDycE7nHJM19C6xAIynH1Qp1/BHiopSi96jGBxT0w=="],
+
+    "supabase": ["supabase@2.81.3", "", { "dependencies": { "bin-links": "^6.0.0", "https-proxy-agent": "^7.0.2", "node-fetch": "^3.3.2", "tar": "7.5.11" }, "bin": { "supabase": "bin/supabase" } }, "sha512-0bpO7xnlcvEfqh0ViGUuv4v1t4tVrFQvaO5Sx3JWrBX/dovSvx/DNZpLdp+/POM4QDXZ2VgZChXHJTPWc4/w8w=="],
 
     "superjson": ["superjson@2.2.6", "", { "dependencies": { "copy-anything": "^4" } }, "sha512-H+ue8Zo4vJmV2nRjpx86P35lzwDT3nItnIsocgumgr0hHMQ+ZGq5vrERg9kJBo5AWGmxZDhzDo+WVIJqkB0cGA=="],
 
