@@ -1,23 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "React Library",
+  "extends": "./base.json",
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "target": "es2022",
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "types": ["node"],
-
-    "sourceMap": true,
-
-    "noUncheckedIndexedAccess": true,
-
-    "strict": true,
-    "jsx": "react-jsx",
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true
+    "jsx": "react-jsx"
   }
 }

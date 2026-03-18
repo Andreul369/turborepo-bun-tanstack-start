@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createIsomorphicFn, createServerFn } from "@tanstack/react-start";
+import { createIsomorphicFn } from "@tanstack/react-start";
 import type { AppRouter } from "@monorepo/api/trpc/routers/_app";
 import { createClient as createBrowserClient } from "@monorepo/supabase/client";
 import { createClient } from "@monorepo/supabase/server";

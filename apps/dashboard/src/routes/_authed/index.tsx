@@ -13,15 +13,14 @@ export const Route = createFileRoute("/_authed/")({
 function OverviewPage() {
   const trpc = useTRPC();
   const { data: user } = useQuery(trpc.users.me.queryOptions());
-  // const username= user.
+  const username = user?.fullName;
 
-  console.log("the logged in user:::", user);
   return (
     <>
       <div className="grid auto-rows-min gap-4 md:grid-cols-3">
         <div className="flex aspect-video items-center justify-center rounded-xl bg-muted">
           <h1 className="font-semibold text-3xl">Overview Page</h1>
-          {/* <h1>{user.}</h1> */}
+          <p>{username}</p>
         </div>
         <div className="flex aspect-video items-center justify-center rounded-xl bg-muted">
           <h1 className="font-semibold text-3xl">Overview Page</h1>

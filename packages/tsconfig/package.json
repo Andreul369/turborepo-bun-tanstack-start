@@ -1,40 +1,9 @@
 {
   "name": "@monorepo/tsconfig",
+  "private": true,
   "version": "0.0.1",
   "description": "Shared TypeScript configurations for the monorepo",
-  "exports": {
-    "./library.json": {
-      "node": "./library.json",
-      "import": "./library.json",
-      "require": "./library.json",
-      "default": "./library.json"
-    },
-    "./react-library.json": {
-      "node": "./react-library.json",
-      "import": "./react-library.json",
-      "require": "./react-library.json",
-      "default": "./react-library.json"
-    },
-    "./tanstack-start.json": {
-      "node": "./tanstack-start.json",
-      "import": "./tanstack-start.json",
-      "require": "./tanstack-start.json",
-      "default": "./tanstack-start.json"
-    }
-  },
   "files": [
-    "*.json"
-  ],
-  "scripts": {
-    "tsc:init": "bunx tsc --init"
-  },
-  "devDependencies": {
-    "@types/node": "catalog:",
-    "typescript": "catalog:"
-  },
-  "keywords": [
-    "typescript",
-    "tsconfig",
-    "monorepo"
+    "base.json"
   ]
 }

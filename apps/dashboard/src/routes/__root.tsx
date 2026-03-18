@@ -52,11 +52,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className="flex min-h-full w-full scroll-smooth"
-      suppressHydrationWarning
-    >
+    <html lang="en" className="flex min-h-full w-full scroll-smooth" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

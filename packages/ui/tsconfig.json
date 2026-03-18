@@ -1,7 +1,10 @@
 {
-  "extends": "@monorepo/tsconfig/library.json",
+  "extends": "@monorepo/tsconfig/react-library.json",
   "compilerOptions": {
-    "lib": ["esnext", "dom", "dom.iterable"]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
